@@ -20,6 +20,7 @@ body {
   flex-direction: column;
 }
 
+/* TIER */
 .tier {
   height: 70px;
   position: relative;
@@ -124,7 +125,81 @@ body {
 
 <div class="chart">
 
-<!-- (unchanged tiers above) -->
+<div class="tier" style="background:#208217;" onclick="go('effortless.html')">
+  <div class="tooltip"><span class="label">Effortless</span></div>
+</div>
+
+<div class="tier" style="background:#649f1d;" onclick="go('cakewalk.html')">
+  <div class="tooltip"><span class="label">Cakewalk</span></div>
+</div>
+
+<div class="tier" style="background:#91b91b;" onclick="go('simple.html')">
+  <div class="tooltip"><span class="label">Simple</span></div>
+</div>
+
+<div class="tier" style="background:#b3cd22;" onclick="go('easy.html')">
+  <div class="tooltip"><span class="label">Easy</span></div>
+</div>
+
+<div class="tier" style="background:#d9d81c;" onclick="go('moderate.html')">
+  <div class="tooltip"><span class="label">Moderate</span></div>
+</div>
+
+<div class="tier" style="background:#d9ba1c;" onclick="go('medium.html')">
+  <div class="tooltip"><span class="label">Medium</span></div>
+</div>
+
+<div class="tier" style="background:#d99a1d;" onclick="go('advanced.html')">
+  <div class="tooltip"><span class="label">Advanced</span></div>
+</div>
+
+<div class="tier" style="background:#d9861c;" onclick="go('challenging.html')">
+  <div class="tooltip"><span class="label">Challenging</span></div>
+</div>
+
+<div class="tier" style="background:#d8691d;" onclick="go('difficult.html')">
+  <div class="tooltip"><span class="label">Difficult</span></div>
+</div>
+
+<div class="tier" style="background:#f13d01;" onclick="go('hard.html')">
+  <div class="tooltip"><span class="label">Hard</span></div>
+</div>
+
+<div class="tier" style="background:#a30800;" onclick="go('intense.html')">
+  <div class="tooltip"><span class="label intense">Intense</span></div>
+</div>
+
+<div class="tier" style="background:#3d0301;" onclick="go('severe.html')">
+  <div class="tooltip"><span class="label severe">Severe</span></div>
+</div>
+
+<div class="tier" style="background:#fe01d3;" onclick="go('remorseless.html')">
+  <div class="tooltip"><span class="label remorseless">Remorseless</span></div>
+</div>
+
+<div class="tier" style="background:#8b0097;" onclick="go('vigorous.html')">
+  <div class="tooltip"><span class="label">Vigorous</span></div>
+</div>
+
+<div class="tier" style="background:#3e0052;" onclick="go('savage.html')">
+  <div class="tooltip"><span class="label">Savage</span></div>
+</div>
+
+<div class="tier" style="background:#2734ff;" onclick="go('insane.html')">
+  <div class="tooltip"><span class="label">Insane</span></div>
+</div>
+
+<div class="tier" style="background:#2888ff;" onclick="go('extreme.html')">
+  <div class="tooltip"><span class="label">Extreme</span></div>
+</div>
+
+<div class="tier" style="background:#00ff99;" onclick="go('absurd.html')">
+  <div class="tooltip"><span class="label">Absurd</span></div>
+</div>
+
+<div class="tier" style="background:#28fdff;" onclick="go('terrifying.html')">
+  <div class="tooltip"><span class="label">Terrifying</span></div>
+</div>
 
 <div class="tier" style="background:#ffffff;" id="catTier" onclick="go('catastrophic.html')">
   <div class="tooltip">
@@ -132,7 +207,13 @@ body {
   </div>
 </div>
 
-<!-- (rest unchanged) -->
+<div class="tier" style="background:#464646;" onclick="go('cataclysmic.html')">
+  <div class="tooltip"><span class="label">Cataclysmic</span></div>
+</div>
+
+<div class="tier" style="background:#000000; border:2px solid #ffc704;" onclick="go('eternal.html')">
+  <div class="tooltip"><span class="label">Eternal</span></div>
+</div>
 
 </div>
 
@@ -149,15 +230,13 @@ let catY = 0;
 let t = 0;
 let hovering = false;
 
-/* =========================
-   BALANCED SHAKE
-========================= */
+/* BALANCED SHAKE */
 function shakeCatastrophic() {
   if (!cat) return;
 
   t += 0.22;
 
-  const r = 4; // smaller
+  const r = 4;
 
   catX = Math.sin(t * 2) * r + Math.sin(t * 3.5) * 1.2;
   catY = Math.cos(t * 1.8) * r + Math.cos(t * 3.2) * 1.2;
@@ -167,9 +246,7 @@ function shakeCatastrophic() {
 
 setInterval(shakeCatastrophic, 16);
 
-/* =========================
-   TRAIL (ONLY WHEN HOVERING)
-========================= */
+/* TRAIL (ONLY ON HOVER) */
 function spawnTrail() {
   if (!cat || !hovering) return;
 
@@ -183,8 +260,6 @@ function spawnTrail() {
   ghost.style.top = rect.top + "px";
 
   ghost.style.transform = `translate(${catX}px, ${catY}px)`;
-
-  // brighter colors (no muddy look)
   ghost.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
 
   document.body.appendChild(ghost);
@@ -194,9 +269,7 @@ function spawnTrail() {
 
 setInterval(spawnTrail, 180);
 
-/* =========================
-   HOVER DETECTION
-========================= */
+/* HOVER DETECTION */
 catTier.addEventListener("mouseenter", () => hovering = true);
 catTier.addEventListener("mouseleave", () => hovering = false);
 
