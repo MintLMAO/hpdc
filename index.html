@@ -20,9 +20,6 @@ body {
   flex-direction: column;
 }
 
-/* =========================
-   TIER
-========================= */
 .tier {
   height: 70px;
   position: relative;
@@ -36,9 +33,7 @@ body {
   z-index: 5;
 }
 
-/* =========================
-   TOOLTIP
-========================= */
+/* TOOLTIP */
 .tooltip {
   position: absolute;
   right: 100%;
@@ -63,9 +58,7 @@ body {
   transform: translate(-120%, -50%);
 }
 
-/* =========================
-   TEXT EFFECTS
-========================= */
+/* EFFECTS */
 .label {
   display: inline-block;
 }
@@ -100,29 +93,27 @@ body {
   100% { transform: scale(1); }
 }
 
-/* =========================
-   CATASTROPHIC (FIXED VISIBILITY)
-========================= */
+/* CATASTROPHIC */
 .catastrophic {
   display: inline-block;
   position: relative;
-  z-index: 999999;   /* ALWAYS ABOVE EVERYTHING */
+  z-index: 999999;
   font-weight: bold;
   text-shadow: 0 0 6px rgba(255,255,255,0.4);
 }
 
-/* trail */
+/* TRAIL */
 .trail {
   position: fixed;
   pointer-events: none;
   opacity: 0.6;
   z-index: 9998;
-  animation: fadeTrail 0.9s linear forwards;
+  animation: fadeTrail 0.8s linear forwards;
 }
 
 @keyframes fadeTrail {
   0% { opacity: 0.6; transform: translate(0,0); }
-  100% { opacity: 0; transform: translate(0,-12px); }
+  100% { opacity: 0; transform: translate(0,-10px); }
 }
 
 </style>
@@ -234,25 +225,25 @@ let catY = 0;
 let t = 0;
 
 /* =========================
-   BIGGER BUT SLOWER SHAKE
+   SMALLER + FASTER SHAKE
 ========================= */
 function shakeCatastrophic() {
   if (!cat) return;
 
-  t += 0.18; // slower evolution
+  t += 0.35; // faster evolution
 
-  const r = 10; // BIGGER movement
+  const r = 6.5; // smaller than before, still visible
 
-  catX = Math.sin(t * 1.2) * r + Math.sin(t * 2.1) * 3;
-  catY = Math.cos(t * 1.1) * r + Math.cos(t * 2.0) * 3;
+  catX = Math.sin(t * 2.2) * r + Math.sin(t * 4.4) * 2;
+  catY = Math.cos(t * 2.0) * r + Math.cos(t * 4.0) * 2;
 
   cat.style.transform = `translate(${catX}px, ${catY}px)`;
 }
 
-setInterval(shakeCatastrophic, 20);
+setInterval(shakeCatastrophic, 14);
 
 /* =========================
-   TRAIL (FOLLOW + CLEAN VISIBILITY)
+   TRAILS
 ========================= */
 function spawnTrail() {
   if (!cat) return;
@@ -270,9 +261,11 @@ function spawnTrail() {
   ghost.style.transform = `translate(${catX}px, ${catY}px)`;
   ghost.style.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
 
+  ghost.style.zIndex = "9999";
+
   document.body.appendChild(ghost);
 
-  setTimeout(() => ghost.remove(), 900);
+  setTimeout(() => ghost.remove(), 800);
 }
 
 setInterval(spawnTrail, 220);
