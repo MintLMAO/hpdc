@@ -21,32 +21,31 @@ body {
 }
 
 /* =========================
-   BASE TIER (NO EFFECTS)
+   TIER (NO ANIMATIONS)
 ========================= */
 .tier {
   height: 70px;
   position: relative;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: visible;
   transition: transform 0.15s ease;
 }
 
 .tier:hover {
   transform: scale(1.03);
-  z-index: 10;
+  z-index: 5;
 }
 
 /* =========================
-   TOOLTIP BASE (SLIDE OUT)
+   TOOLTIP BASE (LEFT SIDE ONLY)
 ========================= */
 .tooltip {
   position: absolute;
-  right: 0%;
+
+  right: 100%;              /* anchor exactly at left edge */
   top: 50%;
 
-  transform: translate(0px, -50%) scale(0.95);
+  transform: translate(-10px, -50%); /* start slightly hidden behind */
   opacity: 0;
 
   background: rgba(0,0,0,0.85);
@@ -57,21 +56,24 @@ body {
 
   pointer-events: none;
 
-  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.2, 1),
-              opacity 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1),
+              opacity 0.2s ease;
 }
 
+/* SLIDE OUT PROPERLY (NEVER OVER TIER) */
 .tier:hover .tooltip {
   opacity: 1;
-  transform: translate(-120%, -50%) scale(1);
+  transform: translate(-120%, -50%);
 }
 
 /* =========================
-   TEXT ANIMATIONS (INSIDE TOOLTIP)
+   TEXT-ONLY ANIMATIONS
 ========================= */
 
 /* Intense - flash */
-.intense { animation: flash 0.4s ease; }
+.intense {
+  animation: flash 0.4s ease;
+}
 
 @keyframes flash {
   0% { filter: brightness(1); }
@@ -79,17 +81,21 @@ body {
   100% { filter: brightness(1); }
 }
 
-/* Severe - pulse on appear */
-.severe { animation: pulse 1.2s ease; }
+/* Severe - pulse once when shown */
+.severe {
+  animation: pulseOnce 0.6s ease;
+}
 
-@keyframes pulse {
+@keyframes pulseOnce {
   0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.15); }
   100% { transform: scale(1); }
 }
 
-/* Remorseless - constant pulse */
-.remorseless { animation: pulseLoop 1.6s infinite; }
+/* Remorseless - continuous pulse */
+.remorseless {
+  animation: pulseLoop 1.5s infinite;
+}
 
 @keyframes pulseLoop {
   0% { transform: scale(1); }
@@ -97,14 +103,17 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Catastrophic - glitchy shake */
-.catastrophic { animation: shake 0.12s infinite; }
+/* Catastrophic - ONLY text shake */
+.catastrophic {
+  display: inline-block;
+  animation: textShake 0.12s infinite;
+}
 
-@keyframes shake {
+@keyframes textShake {
   0% { transform: translate(0,0); }
-  25% { transform: translate(2px,-2px); }
-  50% { transform: translate(-2px,2px); }
-  75% { transform: translate(2px,2px); }
+  25% { transform: translate(1px,-1px); }
+  50% { transform: translate(-1px,1px); }
+  75% { transform: translate(1px,1px); }
   100% { transform: translate(0,0); }
 }
 
@@ -115,7 +124,6 @@ body {
 
 <div class="chart">
 
-<!-- 1 -->
 <div class="tier" style="background:#208217;" onclick="go('effortless.html')">
   <div class="tooltip">Effortless</div>
 </div>
@@ -192,7 +200,7 @@ body {
   <div class="tooltip">Terrifying</div>
 </div>
 
-<div class="tier catastrophic" style="background:#ffffff;" onclick="go('catastrophic.html')">
+<div class="tier" style="background:#ffffff;" onclick="go('catastrophic.html')">
   <div class="tooltip catastrophic">Catastrophic</div>
 </div>
 
