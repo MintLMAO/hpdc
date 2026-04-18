@@ -35,19 +35,21 @@ body {
   z-index: 5;
 }
 
+/* TOOLTIP (no black box anymore) */
 .tooltip {
   position: absolute;
   right: 100%;
   top: 50%;
   transform: translate(0,-50%);
   opacity: 0;
-  background: rgba(0,0,0,0.85);
   color: white;
   padding: 6px 10px;
-  border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
   transition: transform 0.25s cubic-bezier(0.2,0.9,0.2,1), opacity 0.2s ease;
+  background: transparent;
+  text-shadow: 0 0 6px rgba(0,0,0,0.85);
+  font-weight: 600;
 }
 
 .tier:hover .tooltip {
@@ -55,165 +57,85 @@ body {
   transform: translate(-120%, -50%);
 }
 
-.label {
-  display: inline-block;
-}
-
 /* =========================
-   ESCALATION STACK
+   ESCALATION SYSTEM (NEW)
 ========================= */
 
-/* base subtle jitter */
-.intense {
-  animation: jitter 0.15s infinite;
-}
+.intense { animation: microShake 0.18s infinite; }
 
-/* + brightness pulse */
 .severe {
-  animation:
-    jitter 0.15s infinite,
-    flash 0.4s infinite;
+  animation: microShake 0.18s infinite, softPulse 0.6s infinite;
 }
 
-/* + scaling pressure */
 .remorseless {
-  animation:
-    jitter 0.15s infinite,
-    flash 0.4s infinite,
-    scaleUp 2s infinite linear;
+  animation: driftScale 1.4s infinite linear;
 }
 
-/* + stronger shake */
 .vigorous {
-  animation:
-    shake 0.08s infinite,
-    flash 0.4s infinite,
-    scaleUp 2s infinite linear;
+  animation: driftScale 1.2s infinite linear, rotateWobble 0.7s infinite;
 }
 
-/* + skew tearing */
 .savage {
-  animation:
-    shake 0.08s infinite,
-    flash 0.4s infinite,
-    scaleUp 2s infinite linear,
-    skew 0.3s infinite alternate;
+  animation: warp 0.5s infinite alternate;
 }
 
-/* + glitch */
 .insane {
-  animation:
-    shake 0.08s infinite,
-    flash 0.3s infinite,
-    scaleUp 2s infinite linear,
-    skew 0.3s infinite alternate,
-    glitch 0.15s infinite;
+  animation: warp 0.35s infinite alternate, glitchBurst 0.12s infinite;
 }
 
-/* + rotation instability */
 .extreme {
-  animation:
-    shake 0.08s infinite,
-    flash 0.3s infinite,
-    scaleUp 2s infinite linear,
-    skew 0.3s infinite alternate,
-    glitch 0.15s infinite,
-    rotateWobble 0.6s infinite;
+  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite;
 }
 
-/* + distortion */
 .absurd {
-  animation:
-    shake 0.08s infinite,
-    flash 0.3s infinite,
-    scaleUp 2s infinite linear,
-    skew 0.3s infinite alternate,
-    glitch 0.15s infinite,
-    rotateWobble 0.6s infinite,
-    stretch 0.4s infinite;
+  animation: dimensionalStretch 0.4s infinite, phaseShift 0.6s infinite;
 }
 
-/* + flicker chaos */
 .terrifying {
-  animation:
-    shake 0.06s infinite,
-    flash 0.2s infinite,
-    scaleUp 2s infinite linear,
-    skew 0.25s infinite alternate,
-    glitch 0.12s infinite,
-    rotateWobble 0.5s infinite,
-    stretch 0.35s infinite,
-    flicker 0.18s infinite;
+  animation: collapseFlicker 0.22s infinite, dimensionalStretch 0.3s infinite;
 }
 
-/* catastrophic handled separately */
-.catastrophic {
-  position: relative;
-  z-index: 1000;
-  font-weight: bold;
-}
-
-/* cataclysmic = unstable collapse */
+/* CATACLYSMIC */
 .cataclysmic {
-  animation:
-    shake 0.05s infinite,
-    flash 0.2s infinite,
-    scalePulse 1s infinite,
-    skew 0.2s infinite alternate,
-    glitch 0.1s infinite,
-    rotateWobble 0.4s infinite;
+  animation: microShake 0.1s infinite, collapseFlicker 0.18s infinite;
+  font-weight: 800;
 }
 
-/* ETERNAL = COSMIC */
+/* CATACLYSMIC SPECIAL */
+.catastrophic {
+  font-weight: 900;
+  animation: realityBreak 0.18s infinite;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+/* ETERNAL = COSMIC SYSTEM */
 .eternal {
   animation:
-    cosmicDrift 6s infinite linear,
+    cosmicDrift 8s infinite linear,
     cosmicGlow 3s infinite ease-in-out,
-    cosmicHue 8s infinite linear;
+    cosmicHue 12s infinite linear,
+    floatNoise 1.5s infinite;
 }
 
 /* =========================
    KEYFRAMES
 ========================= */
 
-@keyframes jitter {
+@keyframes microShake {
   0% { transform: translate(0,0); }
   50% { transform: translate(1px,-1px); }
   100% { transform: translate(0,0); }
 }
 
-@keyframes shake {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(2px,-2px); }
-  50% { transform: translate(-2px,2px); }
-  75% { transform: translate(2px,2px); }
-  100% { transform: translate(-2px,-2px); }
-}
-
-@keyframes flash {
+@keyframes softPulse {
   0%,100% { filter: brightness(1); }
-  50% { filter: brightness(2); }
+  50% { filter: brightness(1.4); }
 }
 
-@keyframes scaleUp {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
-}
-
-@keyframes scalePulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(0.7); }
-}
-
-@keyframes skew {
-  0% { transform: skewX(0deg); }
-  100% { transform: skewX(15deg); }
-}
-
-@keyframes glitch {
-  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
-  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+@keyframes driftScale {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(2px,-2px) scale(1.06); }
+  100% { transform: translate(0,0) scale(1); }
 }
 
 @keyframes rotateWobble {
@@ -221,14 +143,43 @@ body {
   50% { transform: rotate(10deg); }
 }
 
-@keyframes stretch {
-  0%,100% { transform: scale(1,1); }
-  50% { transform: scale(1.3,0.6); }
+@keyframes warp {
+  0% { transform: skewX(0deg) scale(1); }
+  100% { transform: skewX(12deg) scale(1.08); }
 }
 
-@keyframes flicker {
-  0%,100% { opacity:1; }
-  50% { opacity:0.1; }
+@keyframes glitchBurst {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
+
+@keyframes phaseShift {
+  0% { filter: hue-rotate(0deg) blur(0px); }
+  50% { filter: hue-rotate(120deg) blur(1px); }
+  100% { filter: hue-rotate(0deg) blur(0px); }
+}
+
+@keyframes dimensionalStretch {
+  0%,100% { transform: scale(1,1) skewX(0deg); }
+  50% { transform: scale(1.25,0.7) skewX(10deg); }
+}
+
+@keyframes collapseFlicker {
+  0% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.3; }
+  50% { opacity: 1; transform: scale(0.85); }
+  75% { opacity: 0.2; }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* CATASTROPHIC BREAK */
+@keyframes realityBreak {
+  0% { transform: translate(0,0) scale(1); }
+  20% { transform: translate(2px,-1px) scale(1.02); }
+  40% { transform: translate(-2px,2px) scale(0.98); }
+  60% { transform: translate(1px,1px) scale(1.03); }
+  100% { transform: translate(0,0) scale(1); }
 }
 
 /* COSMIC */
@@ -248,6 +199,14 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
+@keyframes floatNoise {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(1px,-1px); }
+  50% { transform: translate(-1px,2px); }
+  75% { transform: translate(2px,1px); }
+  100% { transform: translate(0,0); }
+}
+
 /* TRAIL */
 .trail {
   position: fixed;
@@ -255,7 +214,6 @@ body {
   opacity: 0.85;
   z-index: 999;
 }
-
 </style>
 </head>
 
@@ -264,36 +222,35 @@ body {
 <div class="chart">
 
 <!-- NORMAL -->
-<div class="tier" style="background:#208217;"><div class="tooltip"><span class="label">Effortless</span></div></div>
-<div class="tier" style="background:#649f1d;"><div class="tooltip"><span class="label">Cakewalk</span></div></div>
-<div class="tier" style="background:#91b91b;"><div class="tooltip"><span class="label">Simple</span></div></div>
-<div class="tier" style="background:#b3cd22;"><div class="tooltip"><span class="label">Easy</span></div></div>
-<div class="tier" style="background:#d9d81c;"><div class="tooltip"><span class="label">Moderate</span></div></div>
-<div class="tier" style="background:#d9ba1c;"><div class="tooltip"><span class="label">Medium</span></div></div>
-<div class="tier" style="background:#d99a1d;"><div class="tooltip"><span class="label">Advanced</span></div></div>
-<div class="tier" style="background:#d9861c;"><div class="tooltip"><span class="label">Challenging</span></div></div>
-<div class="tier" style="background:#d8691d;"><div class="tooltip"><span class="label">Difficult</span></div></div>
-<div class="tier" style="background:#f13d01;"><div class="tooltip"><span class="label">Hard</span></div></div>
+<div class="tier" style="background:#208217;"><div class="tooltip">Effortless</div></div>
+<div class="tier" style="background:#649f1d;"><div class="tooltip">Cakewalk</div></div>
+<div class="tier" style="background:#91b91b;"><div class="tooltip">Simple</div></div>
+<div class="tier" style="background:#b3cd22;"><div class="tooltip">Easy</div></div>
+<div class="tier" style="background:#d9d81c;"><div class="tooltip">Moderate</div></div>
+<div class="tier" style="background:#d9ba1c;"><div class="tooltip">Medium</div></div>
+<div class="tier" style="background:#d99a1d;"><div class="tooltip">Advanced</div></div>
+<div class="tier" style="background:#d9861c;"><div class="tooltip">Challenging</div></div>
+<div class="tier" style="background:#d8691d;"><div class="tooltip">Difficult</div></div>
+<div class="tier" style="background:#f13d01;"><div class="tooltip">Hard</div></div>
 
 <!-- ESCALATION -->
-<div class="tier" style="background:#a30800;"><div class="tooltip"><span class="label intense">Intense</span></div></div>
-<div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="label severe">Severe</span></div></div>
-<div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="label remorseless">Remorseless</span></div></div>
-<div class="tier" style="background:#8b0097;"><div class="tooltip"><span class="label vigorous">Vigorous</span></div></div>
-<div class="tier" style="background:#3e0052;"><div class="tooltip"><span class="label savage">Savage</span></div></div>
-<div class="tier" style="background:#2734ff;"><div class="tooltip"><span class="label insane">Insane</span></div></div>
-<div class="tier" style="background:#2888ff;"><div class="tooltip"><span class="label extreme">Extreme</span></div></div>
-<div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="label absurd">Absurd</span></div></div>
-<div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="label terrifying">Terrifying</span></div></div>
+<div class="tier" style="background:#a30800;"><div class="tooltip"><span class="intense">Intense</span></div></div>
+<div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="severe">Severe</span></div></div>
+<div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="remorseless">Remorseless</span></div></div>
+<div class="tier" style="background:#8b0097;"><div class="tooltip"><span class="vigorous">Vigorous</span></div></div>
+<div class="tier" style="background:#3e0052;"><div class="tooltip"><span class="savage">Savage</span></div></div>
+<div class="tier" style="background:#2734ff;"><div class="tooltip"><span class="insane">Insane</span></div></div>
+<div class="tier" style="background:#2888ff;"><div class="tooltip"><span class="extreme">Extreme</span></div></div>
+<div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
+<div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
 
+<!-- CAT / COSMIC -->
 <div class="tier" style="background:#ffffff;" id="catTier">
-  <div class="tooltip">
-    <span class="label catastrophic" id="catLabel">Catastrophic</span>
-  </div>
+  <div class="tooltip"><span class="catastrophic" id="catLabel">Catastrophic</span></div>
 </div>
 
-<div class="tier" style="background:#464646;"><div class="tooltip"><span class="label cataclysmic">Cataclysmic</span></div></div>
-<div class="tier" style="background:#000000;"><div class="tooltip"><span class="label eternal">Eternal</span></div></div>
+<div class="tier" style="background:#464646;"><div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div></div>
+<div class="tier" style="background:#000000;"><div class="tooltip"><span class="eternal">Eternal</span></div></div>
 
 </div>
 
