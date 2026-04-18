@@ -47,7 +47,7 @@ body {
   border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
-  transition: transform 0.25s cubic-bezier(0.2,0.9,0.2,1), opacity 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .tier:hover .tooltip {
@@ -56,32 +56,49 @@ body {
 }
 
 /* =========================
-   UNIQUE ESCALATION SYSTEM
+   RESTORED ESCALATION (STACKED)
 ========================= */
 
-.intense { animation: pulseJerk 0.4s infinite; }
-
-.severe { animation: heartbeat 0.8s infinite; }
-
-.remorseless { animation: creep 3s infinite linear; }
-
-.vigorous { animation: erraticBounce 0.25s infinite; }
-
-.savage { animation: tear 0.3s infinite alternate; }
-
-.insane { animation: glitchSplit 0.12s infinite; }
-
-.extreme { animation: spiralTilt 0.7s infinite ease-in-out; }
-
-.absurd { animation: warpScale 0.4s infinite; }
-
-.terrifying {
-  animation:
-    phaseShift 0.15s infinite,
-    opacityDrop 0.2s infinite;
+.intense {
+  animation: jitter 0.15s infinite;
 }
 
-/* catastrophic unchanged (your custom JS system) */
+.severe {
+  animation: jitter 0.15s infinite, flash 0.4s infinite;
+}
+
+.remorseless {
+  animation: jitter 0.15s infinite, flash 0.4s infinite, scaleUp 2s infinite linear;
+}
+
+.vigorous {
+  animation: shake 0.08s infinite, flash 0.4s infinite, scaleUp 2s infinite linear;
+}
+
+.savage {
+  animation: shake 0.08s infinite, flash 0.4s infinite, skew 0.3s infinite alternate;
+}
+
+.insane {
+  animation: shake 0.08s infinite, flash 0.3s infinite, glitch 0.15s infinite;
+}
+
+.extreme {
+  animation: shake 0.08s infinite, flash 0.3s infinite, rotateWobble 0.6s infinite;
+}
+
+.absurd {
+  animation: shake 0.08s infinite, flash 0.3s infinite, stretch 0.4s infinite;
+}
+
+.terrifying {
+  animation: shake 0.06s infinite, flicker 0.18s infinite, flash 0.2s infinite;
+}
+
+/* =========================
+   YOUR ORIGINAL CAT / ETERNAL
+========================= */
+
 .catastrophic {
   position: relative;
   z-index: 1000;
@@ -89,7 +106,13 @@ body {
 }
 
 .cataclysmic {
-  animation: collapse 1s infinite;
+  animation:
+    shake 0.05s infinite,
+    flash 0.2s infinite,
+    scalePulse 1s infinite,
+    skew 0.2s infinite alternate,
+    glitch 0.1s infinite,
+    rotateWobble 0.4s infinite;
 }
 
 .eternal {
@@ -100,75 +123,62 @@ body {
 }
 
 /* =========================
-   KEYFRAMES
+   KEYFRAMES (RESTORED CORE)
 ========================= */
 
-@keyframes pulseJerk {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.15) translate(1px,-1px); }
-}
-
-@keyframes heartbeat {
-  0%,100% { transform: scale(1); }
-  25% { transform: scale(1.2); }
-  40% { transform: scale(0.9); }
-  60% { transform: scale(1.15); }
-}
-
-@keyframes creep {
-  0% { transform: scale(1); letter-spacing: 0px; }
-  100% { transform: scale(1.2); letter-spacing: 3px; }
-}
-
-@keyframes erraticBounce {
+@keyframes jitter {
   0% { transform: translate(0,0); }
-  20% { transform: translate(4px,-3px); }
-  40% { transform: translate(-3px,3px); }
-  60% { transform: translate(3px,2px); }
-  80% { transform: translate(-2px,-4px); }
+  50% { transform: translate(1px,-1px); }
   100% { transform: translate(0,0); }
 }
 
-@keyframes tear {
-  0% { transform: skewX(0deg) scale(1); }
-  100% { transform: skewX(25deg) scale(1.1,0.8); }
-}
-
-@keyframes glitchSplit {
-  0% { text-shadow: 3px 0 red, -3px 0 cyan; }
-  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
-  100% { text-shadow: 3px 0 red, -3px 0 cyan; }
-}
-
-@keyframes spiralTilt {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(15deg) scale(1.1); }
-  100% { transform: rotate(-15deg) scale(1); }
-}
-
-@keyframes warpScale {
-  0% { transform: scale(1,1); }
-  25% { transform: scale(1.4,0.6); }
-  50% { transform: scale(0.6,1.4); }
-  75% { transform: scale(1.3,0.7); }
-  100% { transform: scale(1,1); }
-}
-
-@keyframes phaseShift {
+@keyframes shake {
   0% { transform: translate(0,0); }
-  50% { transform: translate(6px,-6px); }
-  100% { transform: translate(-6px,6px); }
+  25% { transform: translate(2px,-2px); }
+  50% { transform: translate(-2px,2px); }
+  75% { transform: translate(2px,2px); }
+  100% { transform: translate(-2px,-2px); }
 }
 
-@keyframes opacityDrop {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0.05; }
+@keyframes flash {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(2); }
 }
 
-@keyframes collapse {
+@keyframes scaleUp {
   0% { transform: scale(1); }
-  50% { transform: scale(0.3) rotate(20deg); }
-  100% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes scalePulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(0.7); }
+}
+
+@keyframes skew {
+  0% { transform: skewX(0deg); }
+  100% { transform: skewX(15deg); }
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
+
+@keyframes rotateWobble {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes stretch {
+  0%,100% { transform: scale(1,1); }
+  50% { transform: scale(1.3,0.6); }
+}
+
+@keyframes flicker {
+  0%,100% { opacity:1; }
+  50% { opacity:0.1; }
 }
 
 /* COSMIC */
@@ -188,7 +198,7 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
-/* TRAIL */
+/* TRAIL (UNCHANGED) */
 .trail {
   position: fixed;
   pointer-events: none;
@@ -225,7 +235,7 @@ body {
 <div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
 <div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
 
-<!-- CAT -->
+<!-- CAT / ETERNAL RESTORED -->
 <div class="tier" style="background:#ffffff;" id="catTier">
   <div class="tooltip">
     <span class="catastrophic" id="catLabel">Catastrophic</span>
@@ -239,17 +249,17 @@ body {
 
 <script>
 const cat = document.getElementById("catLabel");
-const catTier = document.getElementById("catTier");
+let t = 0;
 
-let catX = 0, catY = 0, t = 0, hovering = false;
-
-function shake() {
+function shakeCat() {
   t += 0.22;
-  catX = Math.sin(t*2)*4;
-  catY = Math.cos(t*1.8)*4;
-  cat.style.transform = `translate(${catX}px, ${catY}px)`;
+  const x = Math.sin(t*2)*4;
+  const y = Math.cos(t*1.8)*4;
+  cat.style.transform = `translate(${x}px, ${y}px)`;
 }
-setInterval(shake, 16);
+setInterval(shakeCat, 16);
+
+let hovering = false;
 
 function trail() {
   if (!hovering) return;
@@ -261,7 +271,6 @@ function trail() {
 
   ghost.style.left = rect.left + "px";
   ghost.style.top = rect.top + "px";
-  ghost.style.transform = `translate(${catX}px, ${catY}px)`;
   ghost.style.color = `hsl(${Math.random()*360},100%,75%)`;
 
   document.body.appendChild(ghost);
@@ -269,8 +278,11 @@ function trail() {
 }
 setInterval(trail, 80);
 
-catTier.addEventListener("mouseenter", ()=>hovering=true);
-catTier.addEventListener("mouseleave", ()=>hovering=false);
+document.getElementById("catTier")
+  .addEventListener("mouseenter", ()=>hovering=true);
+
+document.getElementById("catTier")
+  .addEventListener("mouseleave", ()=>hovering=false);
 </script>
 
 </body>
