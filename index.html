@@ -20,7 +20,6 @@ body {
   flex-direction: column;
 }
 
-/* TIER */
 .tier {
   height: 70px;
   position: relative;
@@ -103,19 +102,13 @@ body {
   text-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
-/* TRAIL */
+/* TRAIL (NO ANIMATION, NO DRIFT) */
 .trail {
   position: fixed;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.85;
   z-index: 999;
-  animation: fadeTrail 0.6s linear forwards;
-  filter: blur(0.5px);
-}
-
-@keyframes fadeTrail {
-  0% { opacity: 0.9; transform: translate(0,0); }
-  100% { opacity: 0; transform: translate(0,-6px); }
+  filter: blur(0.4px);
 }
 
 </style>
@@ -230,7 +223,7 @@ let catY = 0;
 let t = 0;
 let hovering = false;
 
-/* BALANCED SHAKE */
+/* SHAKE (CONTROLLED) */
 function shakeCatastrophic() {
   if (!cat) return;
 
@@ -246,7 +239,7 @@ function shakeCatastrophic() {
 
 setInterval(shakeCatastrophic, 16);
 
-/* TRAIL (ONLY ON HOVER) */
+/* TRAIL (INSTANT DISAPPEAR) */
 function spawnTrail() {
   if (!cat || !hovering) return;
 
@@ -258,16 +251,15 @@ function spawnTrail() {
 
   ghost.style.left = rect.left + "px";
   ghost.style.top = rect.top + "px";
-
   ghost.style.transform = `translate(${catX}px, ${catY}px)`;
   ghost.style.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
 
   document.body.appendChild(ghost);
 
-  setTimeout(() => ghost.remove(), 600);
+  setTimeout(() => ghost.remove(), 120); // instant-ish vanish
 }
 
-setInterval(spawnTrail, 180);
+setInterval(spawnTrail, 120);
 
 /* HOVER DETECTION */
 catTier.addEventListener("mouseenter", () => hovering = true);
