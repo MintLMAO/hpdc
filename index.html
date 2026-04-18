@@ -21,7 +21,7 @@ body {
 }
 
 /* =========================
-   TIER (NO ANIMATIONS)
+   TIER (NO EFFECTS)
 ========================= */
 .tier {
   height: 70px;
@@ -37,15 +37,13 @@ body {
 }
 
 /* =========================
-   TOOLTIP BASE (LEFT SIDE ONLY)
+   TOOLTIP POSITIONING
 ========================= */
 .tooltip {
   position: absolute;
-
-  right: 100%;              /* anchor exactly at left edge */
+  right: 100%;
   top: 50%;
-
-  transform: translate(-10px, -50%); /* start slightly hidden behind */
+  transform: translate(0px, -50%);
   opacity: 0;
 
   background: rgba(0,0,0,0.85);
@@ -60,17 +58,21 @@ body {
               opacity 0.2s ease;
 }
 
-/* SLIDE OUT PROPERLY (NEVER OVER TIER) */
 .tier:hover .tooltip {
   opacity: 1;
   transform: translate(-120%, -50%);
 }
 
 /* =========================
-   TEXT-ONLY ANIMATIONS
+   INNER LABEL (TEXT ONLY)
 ========================= */
+.label {
+  display: inline-block;
+}
 
-/* Intense - flash */
+/* =========================
+   INTENSE - FLASH
+========================= */
 .intense {
   animation: flash 0.4s ease;
 }
@@ -81,7 +83,9 @@ body {
   100% { filter: brightness(1); }
 }
 
-/* Severe - pulse once when shown */
+/* =========================
+   SEVERE - BOLD FLASH ON ENTRY
+========================= */
 .severe {
   animation: pulseOnce 0.6s ease;
 }
@@ -92,7 +96,9 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Remorseless - continuous pulse */
+/* =========================
+   REMORSELESS - CONSTANT PULSE
+========================= */
 .remorseless {
   animation: pulseLoop 1.5s infinite;
 }
@@ -103,9 +109,10 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Catastrophic - ONLY text shake */
+/* =========================
+   CATASTROPHIC - TEXT SHAKE + TRAIL FEEL
+========================= */
 .catastrophic {
-  display: inline-block;
   animation: textShake 0.12s infinite;
 }
 
@@ -125,91 +132,91 @@ body {
 <div class="chart">
 
 <div class="tier" style="background:#208217;" onclick="go('effortless.html')">
-  <div class="tooltip">Effortless</div>
+  <div class="tooltip"><span class="label">Effortless</span></div>
 </div>
 
 <div class="tier" style="background:#649f1d;" onclick="go('cakewalk.html')">
-  <div class="tooltip">Cakewalk</div>
+  <div class="tooltip"><span class="label">Cakewalk</span></div>
 </div>
 
 <div class="tier" style="background:#91b91b;" onclick="go('simple.html')">
-  <div class="tooltip">Simple</div>
+  <div class="tooltip"><span class="label">Simple</span></div>
 </div>
 
 <div class="tier" style="background:#b3cd22;" onclick="go('easy.html')">
-  <div class="tooltip">Easy</div>
+  <div class="tooltip"><span class="label">Easy</span></div>
 </div>
 
 <div class="tier" style="background:#d9d81c;" onclick="go('moderate.html')">
-  <div class="tooltip">Moderate</div>
+  <div class="tooltip"><span class="label">Moderate</span></div>
 </div>
 
 <div class="tier" style="background:#d9ba1c;" onclick="go('medium.html')">
-  <div class="tooltip">Medium</div>
+  <div class="tooltip"><span class="label">Medium</span></div>
 </div>
 
 <div class="tier" style="background:#d99a1d;" onclick="go('advanced.html')">
-  <div class="tooltip">Advanced</div>
+  <div class="tooltip"><span class="label">Advanced</span></div>
 </div>
 
 <div class="tier" style="background:#d9861c;" onclick="go('challenging.html')">
-  <div class="tooltip">Challenging</div>
+  <div class="tooltip"><span class="label">Challenging</span></div>
 </div>
 
 <div class="tier" style="background:#d8691d;" onclick="go('difficult.html')">
-  <div class="tooltip">Difficult</div>
+  <div class="tooltip"><span class="label">Difficult</span></div>
 </div>
 
 <div class="tier" style="background:#f13d01;" onclick="go('hard.html')">
-  <div class="tooltip">Hard</div>
+  <div class="tooltip"><span class="label">Hard</span></div>
 </div>
 
 <div class="tier" style="background:#a30800;" onclick="go('intense.html')">
-  <div class="tooltip intense">Intense</div>
+  <div class="tooltip"><span class="label intense">Intense</span></div>
 </div>
 
 <div class="tier" style="background:#3d0301;" onclick="go('severe.html')">
-  <div class="tooltip severe">Severe</div>
+  <div class="tooltip"><span class="label severe">Severe</span></div>
 </div>
 
 <div class="tier" style="background:#fe01d3;" onclick="go('remorseless.html')">
-  <div class="tooltip remorseless">Remorseless</div>
+  <div class="tooltip"><span class="label remorseless">Remorseless</span></div>
 </div>
 
 <div class="tier" style="background:#8b0097;" onclick="go('vigorous.html')">
-  <div class="tooltip">Vigorous</div>
+  <div class="tooltip"><span class="label">Vigorous</span></div>
 </div>
 
 <div class="tier" style="background:#3e0052;" onclick="go('savage.html')">
-  <div class="tooltip">Savage</div>
+  <div class="tooltip"><span class="label">Savage</span></div>
 </div>
 
 <div class="tier" style="background:#2734ff;" onclick="go('insane.html')">
-  <div class="tooltip">Insane</div>
+  <div class="tooltip"><span class="label">Insane</span></div>
 </div>
 
 <div class="tier" style="background:#2888ff;" onclick="go('extreme.html')">
-  <div class="tooltip">Extreme</div>
+  <div class="tooltip"><span class="label">Extreme</span></div>
 </div>
 
 <div class="tier" style="background:#00ff99;" onclick="go('absurd.html')">
-  <div class="tooltip">Absurd</div>
+  <div class="tooltip"><span class="label">Absurd</span></div>
 </div>
 
 <div class="tier" style="background:#28fdff;" onclick="go('terrifying.html')">
-  <div class="tooltip">Terrifying</div>
+  <div class="tooltip"><span class="label">Terrifying</span></div>
 </div>
 
 <div class="tier" style="background:#ffffff;" onclick="go('catastrophic.html')">
-  <div class="tooltip catastrophic">Catastrophic</div>
+  <div class="tooltip"><span class="label catastrophic">Catastrophic</span></div>
 </div>
 
 <div class="tier" style="background:#464646;" onclick="go('cataclysmic.html')">
-  <div class="tooltip">Cataclysmic</div>
+  <div class="tooltip"><span class="label">Cataclysmic</span></div>
 </div>
 
 <div class="tier" style="background:#000000; border:2px solid #ffc704;" onclick="go('eternal.html')">
-  <div class="tooltip">Eternal</div>
+  <div class="tooltip"><span class="label">Eternal</span></div>
 </div>
 
 </div>
