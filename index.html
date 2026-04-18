@@ -14,6 +14,7 @@ body {
   justify-content: center;
   padding: 20px;
   font-family: 'Overpass', sans-serif;
+  overflow-x: hidden;
 }
 
 .chart {
@@ -56,30 +57,12 @@ body {
   transform: translate(-120%, -50%);
 }
 
-/* ESCALATION SYSTEM (unchanged) */
-
-.intense { animation: microShake 0.22s infinite; }
-.severe { animation: microShake 0.18s infinite, softPulse 0.8s infinite; }
-.remorseless { animation: driftScale 1.6s infinite linear; }
-.vigorous { animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite; }
-.savage { animation: warp 0.7s infinite alternate; }
-.insane { animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite; }
-.extreme { animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite; }
-.absurd { animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite; }
-
-.terrifying {
-  animation: terrorStutter 0.9s infinite steps(1),
-             collapseFlicker 0.18s infinite;
-  transform-origin: center;
+/* ESCALATION STYLES (kept simple here for clarity) */
+.tier span {
   font-weight: 700;
 }
 
-.cataclysmic {
-  animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
-  font-weight: 800;
-}
-
-/* CATASTROPHIC (now JS-driven chaos) */
+/* CATASTROPHIC */
 .catastrophic {
   font-weight: 900;
   text-shadow: 0 0 10px rgba(255,255,255,0.85);
@@ -87,74 +70,15 @@ body {
   display: inline-block;
 }
 
-/* KEYFRAMES */
-
-@keyframes microShake {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(1px,-1px); }
-  100% { transform: translate(0,0); }
-}
-
-@keyframes softPulse {
-  0%,100% { filter: brightness(1); }
-  50% { filter: brightness(1.4); }
-}
-
-@keyframes driftScale {
-  0% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(2px,-2px) scale(1.06); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-@keyframes rotateWobble {
-  0%,100% { transform: rotate(0deg); }
-  50% { transform: rotate(10deg); }
-}
-
-@keyframes warp {
-  0% { transform: skewX(0deg) scale(1); }
-  100% { transform: skewX(12deg) scale(1.08); }
-}
-
-@keyframes glitchBurst {
-  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
-  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
-}
-
-@keyframes phaseShift {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(120deg); }
-  100% { filter: hue-rotate(0deg); }
-}
-
-@keyframes dimensionalStretch {
-  0%,100% { transform: scale(1,1) skewX(0deg); }
-  50% { transform: scale(1.25,0.7) skewX(10deg); }
-}
-
-@keyframes collapseFlicker {
-  0% { opacity: 1; transform: scale(1); }
-  25% { opacity: 0.3; }
-  50% { opacity: 1; transform: scale(0.85); }
-  75% { opacity: 0.2; }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes terrorStutter {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(2px,-2px); }
-  50% { transform: translate(-2px,2px); }
-  75% { transform: translate(1px,1px); }
-  100% { transform: translate(0,0); }
-}
-
-@keyframes structuralCollapse {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(2px,-1px); }
-  50% { transform: translate(-2px,2px); }
-  75% { transform: translate(1px,2px); }
-  100% { transform: translate(0,0); }
+/* TRAIL */
+.trail {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.8;
+  font-weight: 900;
+  font-family: 'Overpass', sans-serif;
+  z-index: 999;
+  transition: opacity 0.25s linear;
 }
 
 </style>
@@ -164,7 +88,6 @@ body {
 
 <div class="chart">
 
-<!-- NORMAL -->
 <div class="tier" style="background:#208217;"><div class="tooltip">Effortless</div></div>
 <div class="tier" style="background:#649f1d;"><div class="tooltip">Cakewalk</div></div>
 <div class="tier" style="background:#91b91b;"><div class="tooltip">Simple</div></div>
@@ -176,25 +99,23 @@ body {
 <div class="tier" style="background:#d8691d;"><div class="tooltip">Difficult</div></div>
 <div class="tier" style="background:#f13d01;"><div class="tooltip">Hard</div></div>
 
-<!-- ESCALATION -->
-<div class="tier" style="background:#a30800;"><div class="tooltip"><span class="intense">Intense</span></div></div>
-<div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="severe">Severe</span></div></div>
-<div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="remorseless">Remorseless</span></div></div>
-<div class="tier" style="background:#8b0097;"><div class="tooltip"><span class="vigorous">Vigorous</span></div></div>
-<div class="tier" style="background:#3e0052;"><div class="tooltip"><span class="savage">Savage</span></div></div>
-<div class="tier" style="background:#2734ff;"><div class="tooltip"><span class="insane">Insane</span></div></div>
-<div class="tier" style="background:#2888ff;"><div class="tooltip"><span class="extreme">Extreme</span></div></div>
-<div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
-<div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
+<div class="tier" style="background:#a30800;"><div class="tooltip">Intense</div></div>
+<div class="tier" style="background:#3d0301;"><div class="tooltip">Severe</div></div>
+<div class="tier" style="background:#fe01d3;"><div class="tooltip">Remorseless</div></div>
+<div class="tier" style="background:#8b0097;"><div class="tooltip">Vigorous</div></div>
+<div class="tier" style="background:#3e0052;"><div class="tooltip">Savage</div></div>
+<div class="tier" style="background:#2734ff;"><div class="tooltip">Insane</div></div>
+<div class="tier" style="background:#2888ff;"><div class="tooltip">Extreme</div></div>
+<div class="tier" style="background:#00ff99;"><div class="tooltip">Absurd</div></div>
+<div class="tier" style="background:#28fdff;"><div class="tooltip">Terrifying</div></div>
 
-<!-- CATASTROPHIC -->
 <div class="tier" style="background:#ffffff;" id="catTier">
   <div class="tooltip">
     <span class="catastrophic" id="catLabel">Catastrophic</span>
   </div>
 </div>
 
-<div class="tier" style="background:#464646;"><div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div></div>
+<div class="tier" style="background:#464646;"><div class="tooltip">Cataclysmic</div></div>
 <div class="tier" style="background:#000000;"><div class="tooltip">Eternal</div></div>
 
 </div>
@@ -202,36 +123,61 @@ body {
 <script>
 const cat = document.getElementById("catLabel");
 
-/* CATASTROPHIC: chaotic random-walk jitter */
+/* =========================
+   CATASTROPHIC MOTION
+========================= */
+
 let x = 0, y = 0;
 let vx = 0, vy = 0;
 
-function updateCatastrophic() {
-  // random force injection
-  vx += (Math.random() - 0.5) * 1.5;
-  vy += (Math.random() - 0.5) * 1.5;
+function update() {
+  vx += (Math.random() - 0.5) * 1.7;
+  vy += (Math.random() - 0.5) * 1.7;
 
-  // damping so it doesn’t explode
   vx *= 0.82;
   vy *= 0.82;
 
-  // sudden instability spikes
-  if (Math.random() < 0.07) {
-    vx += (Math.random() - 0.5) * 7;
-    vy += (Math.random() - 0.5) * 7;
+  if (Math.random() < 0.06) {
+    vx += (Math.random() - 0.5) * 8;
+    vy += (Math.random() - 0.5) * 8;
   }
 
   x += vx;
   y += vy;
 
-  // keep readable bounds
   x = Math.max(-7, Math.min(7, x));
   y = Math.max(-7, Math.min(7, y));
 
   cat.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-setInterval(updateCatastrophic, 16);
+setInterval(update, 16);
+
+/* =========================
+   TRAIL SYSTEM
+========================= */
+
+function spawnTrail() {
+  const rect = cat.getBoundingClientRect();
+
+  const ghost = document.createElement("div");
+  ghost.className = "trail";
+  ghost.innerText = "Catastrophic";
+
+  ghost.style.left = rect.left + "px";
+  ghost.style.top = rect.top + "px";
+
+  ghost.style.transform = `translate(${x}px, ${y}px)`;
+  ghost.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+
+  document.body.appendChild(ghost);
+
+  setTimeout(() => ghost.style.opacity = 0, 20);
+  setTimeout(() => ghost.remove(), 250);
+}
+
+setInterval(spawnTrail, 65);
+
 </script>
 
 </body>
