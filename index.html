@@ -35,12 +35,11 @@ body {
   z-index: 5;
 }
 
-/* TOOLTIP */
 .tooltip {
   position: absolute;
   right: 100%;
   top: 50%;
-  transform: translate(0px, -50%);
+  transform: translate(0,-50%);
   opacity: 0;
   background: rgba(0,0,0,0.85);
   color: white;
@@ -48,8 +47,7 @@ body {
   border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
-  transition: transform 0.25s cubic-bezier(0.2,0.9,0.2,1),
-              opacity 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.2,0.9,0.2,1), opacity 0.2s ease;
 }
 
 .tier:hover .tooltip {
@@ -62,110 +60,192 @@ body {
 }
 
 /* =========================
-   EFFECTS
+   ESCALATION STACK
 ========================= */
 
+/* base subtle jitter */
 .intense {
-  animation: intense 0.15s infinite;
-}
-@keyframes intense {
-  0%,100% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.05); filter: brightness(2); }
+  animation: jitter 0.15s infinite;
 }
 
+/* + brightness pulse */
 .severe {
-  animation: severe 0.5s infinite;
-}
-@keyframes severe {
-  0%,90%,100% { transform: scale(1); }
-  50% { transform: scale(1.25); }
+  animation:
+    jitter 0.15s infinite,
+    flash 0.4s infinite;
 }
 
+/* + scaling pressure */
 .remorseless {
-  animation: remorseless 2.5s infinite linear;
-}
-@keyframes remorseless {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.15); }
+  animation:
+    jitter 0.15s infinite,
+    flash 0.4s infinite,
+    scaleUp 2s infinite linear;
 }
 
+/* + stronger shake */
 .vigorous {
-  animation: vigorous 0.12s infinite;
-}
-@keyframes vigorous {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(2px,-1px); }
-  50% { transform: translate(-2px,1px); }
-  75% { transform: translate(1px,2px); }
-  100% { transform: translate(-1px,-2px); }
+  animation:
+    shake 0.08s infinite,
+    flash 0.4s infinite,
+    scaleUp 2s infinite linear;
 }
 
+/* + skew tearing */
 .savage {
-  animation: savage 0.3s infinite alternate;
-}
-@keyframes savage {
-  0% { transform: skewX(0deg); }
-  100% { transform: skewX(18deg); }
+  animation:
+    shake 0.08s infinite,
+    flash 0.4s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate;
 }
 
+/* + glitch */
 .insane {
-  animation: insane 0.15s infinite;
-}
-@keyframes insane {
-  0% { text-shadow: 3px 0 red, -3px 0 cyan; }
-  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
-  100% { text-shadow: 3px 0 red, -3px 0 cyan; }
+  animation:
+    shake 0.08s infinite,
+    flash 0.3s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate,
+    glitch 0.15s infinite;
 }
 
+/* + rotation instability */
 .extreme {
-  animation: extreme 0.6s infinite;
-}
-@keyframes extreme {
-  0%,100% { transform: rotate(0deg); }
-  50% { transform: rotate(12deg); }
+  animation:
+    shake 0.08s infinite,
+    flash 0.3s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate,
+    glitch 0.15s infinite,
+    rotateWobble 0.6s infinite;
 }
 
+/* + distortion */
 .absurd {
-  animation: absurd 0.4s infinite;
-}
-@keyframes absurd {
-  0% { transform: scale(1,1); }
-  50% { transform: scale(1.3,0.6) skew(10deg); }
-  100% { transform: scale(1,1); }
+  animation:
+    shake 0.08s infinite,
+    flash 0.3s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate,
+    glitch 0.15s infinite,
+    rotateWobble 0.6s infinite,
+    stretch 0.4s infinite;
 }
 
+/* + flicker chaos */
 .terrifying {
-  animation: terrifying 0.18s infinite;
-}
-@keyframes terrifying {
-  0% { opacity:1; transform: translate(0,0); }
-  20% { opacity:0.2; transform: translate(-2px,1px); }
-  40% { opacity:1; transform: translate(2px,-2px); }
-  60% { opacity:0.1; transform: translate(-1px,2px); }
-  80% { opacity:1; transform: translate(1px,-1px); }
-  100% { opacity:1; transform: translate(0,0); }
+  animation:
+    shake 0.06s infinite,
+    flash 0.2s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.25s infinite alternate,
+    glitch 0.12s infinite,
+    rotateWobble 0.5s infinite,
+    stretch 0.35s infinite,
+    flicker 0.18s infinite;
 }
 
+/* catastrophic handled separately */
 .catastrophic {
   position: relative;
   z-index: 1000;
   font-weight: bold;
 }
 
+/* cataclysmic = unstable collapse */
 .cataclysmic {
-  animation: cataclysmic 1.5s infinite;
+  animation:
+    shake 0.05s infinite,
+    flash 0.2s infinite,
+    scalePulse 1s infinite,
+    skew 0.2s infinite alternate,
+    glitch 0.1s infinite,
+    rotateWobble 0.4s infinite;
 }
-@keyframes cataclysmic {
+
+/* ETERNAL = COSMIC */
+.eternal {
+  animation:
+    cosmicDrift 6s infinite linear,
+    cosmicGlow 3s infinite ease-in-out,
+    cosmicHue 8s infinite linear;
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+
+@keyframes jitter {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
+}
+
+@keyframes shake {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(2px,-2px); }
+  50% { transform: translate(-2px,2px); }
+  75% { transform: translate(2px,2px); }
+  100% { transform: translate(-2px,-2px); }
+}
+
+@keyframes flash {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(2); }
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes scalePulse {
   0%,100% { transform: scale(1); }
   50% { transform: scale(0.7); }
 }
 
-.eternal {
-  animation: eternal 2s infinite;
+@keyframes skew {
+  0% { transform: skewX(0deg); }
+  100% { transform: skewX(15deg); }
 }
-@keyframes eternal {
-  0%,100% { text-shadow: 0 0 5px gold; }
-  50% { text-shadow: 0 0 20px gold; }
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
+
+@keyframes rotateWobble {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes stretch {
+  0%,100% { transform: scale(1,1); }
+  50% { transform: scale(1.3,0.6); }
+}
+
+@keyframes flicker {
+  0%,100% { opacity:1; }
+  50% { opacity:0.1; }
+}
+
+/* COSMIC */
+@keyframes cosmicDrift {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(3px,-3px) scale(1.05); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes cosmicGlow {
+  0%,100% { text-shadow: 0 0 5px #fff, 0 0 10px #6cf; }
+  50% { text-shadow: 0 0 20px #fff, 0 0 40px #6cf, 0 0 60px #f0f; }
+}
+
+@keyframes cosmicHue {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
 }
 
 /* TRAIL */
@@ -183,7 +263,7 @@ body {
 
 <div class="chart">
 
-<!-- NORMAL TIERS -->
+<!-- NORMAL -->
 <div class="tier" style="background:#208217;"><div class="tooltip"><span class="label">Effortless</span></div></div>
 <div class="tier" style="background:#649f1d;"><div class="tooltip"><span class="label">Cakewalk</span></div></div>
 <div class="tier" style="background:#91b91b;"><div class="tooltip"><span class="label">Simple</span></div></div>
@@ -195,7 +275,7 @@ body {
 <div class="tier" style="background:#d8691d;"><div class="tooltip"><span class="label">Difficult</span></div></div>
 <div class="tier" style="background:#f13d01;"><div class="tooltip"><span class="label">Hard</span></div></div>
 
-<!-- EFFECT TIERS -->
+<!-- ESCALATION -->
 <div class="tier" style="background:#a30800;"><div class="tooltip"><span class="label intense">Intense</span></div></div>
 <div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="label severe">Severe</span></div></div>
 <div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="label remorseless">Remorseless</span></div></div>
@@ -206,7 +286,6 @@ body {
 <div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="label absurd">Absurd</span></div></div>
 <div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="label terrifying">Terrifying</span></div></div>
 
-<!-- CATASTROPHIC -->
 <div class="tier" style="background:#ffffff;" id="catTier">
   <div class="tooltip">
     <span class="label catastrophic" id="catLabel">Catastrophic</span>
