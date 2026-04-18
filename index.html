@@ -14,7 +14,23 @@ body {
   justify-content: center;
   padding: 20px;
   font-family: 'Overpass', sans-serif;
-  transition: filter 2s ease, background 2s ease;
+  overflow: hidden;
+  transition: filter 0.6s ease, transform 0.2s ease, background 1s ease;
+}
+
+/* GLOBAL OVERLAYS */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.75));
+}
+
+body.terrifying::before {
+  opacity: 1;
 }
 
 .chart {
@@ -28,7 +44,7 @@ body {
   position: relative;
   cursor: pointer;
   overflow: visible;
-  transition: transform 0.15s ease, filter 0.3s ease;
+  transition: transform 0.15s ease;
 }
 
 .tier:hover {
@@ -59,7 +75,49 @@ body {
 }
 
 /* =========================
-   BASE ESCALATION
+   TERRIFYING (global horror mode)
+========================= */
+body.terrifying {
+  filter: grayscale(1) contrast(1.5) brightness(0.65);
+  animation: horrorFlicker 0.12s infinite;
+}
+
+@keyframes horrorFlicker {
+  0% { filter: grayscale(1) contrast(1.5) brightness(0.65); }
+  50% { filter: grayscale(1) contrast(1.8) brightness(0.55); }
+  100% { filter: grayscale(1) contrast(1.5) brightness(0.65); }
+}
+
+/* =========================
+   CATASTROPHIC (full shake)
+========================= */
+body.catastrophic {
+  animation: globalShake 0.10s infinite;
+}
+
+@keyframes globalShake {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-2px,1px); }
+  50% { transform: translate(2px,-2px); }
+  75% { transform: translate(-1px,2px); }
+  100% { transform: translate(0,0); }
+}
+
+/* =========================
+   CATACLYSMIC (warp instability)
+========================= */
+body.cataclysmic {
+  animation: globalWarp 0.25s infinite;
+}
+
+@keyframes globalWarp {
+  0% { transform: skew(0deg,0deg) scale(1); }
+  50% { transform: skew(2deg,-2deg) scale(1.01); }
+  100% { transform: skew(0deg,0deg) scale(1); }
+}
+
+/* =========================
+   TIER EFFECTS (your original system preserved)
 ========================= */
 
 .intense { animation: microShake 0.22s infinite; }
@@ -68,178 +126,103 @@ body {
 .vigorous { animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite; }
 .savage { animation: warp 0.7s infinite alternate; }
 .insane { animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite; }
-.extreme { animation: phaseShift 0.6s infinite, microShake 0.12s infinite; }
+.extreme { animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite; }
+.absurd { animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite; }
 
-/* =========================
-   ABSURD = LIMINAL SYSTEM
-========================= */
-
-.absurd {
-  animation: liminalShift 2.5s infinite ease-in-out;
-  letter-spacing: 2px;
-  opacity: 0.9;
-}
-
-/* =========================
-   TERRIFYING = LOCAL FIELD DISTORTION
-========================= */
-
+/* TERRIFYING TEXT */
 .terrifying {
   animation: terrorStutter 0.9s infinite steps(1);
-  position: relative;
-  z-index: 10;
 }
 
-/* =========================
-   CATACLYSMIC = GLOBAL INSTABILITY
-========================= */
-
-.cataclysmic {
-  animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
-}
-
-/* =========================
-   CATASTROPHIC = SYSTEM CORRUPTION EVENT
-========================= */
-
+/* CATASTROPHIC TEXT */
 .catastrophic {
   font-weight: 900;
-  animation: realityBreak 0.18s infinite;
   text-shadow: 0 0 10px rgba(255,255,255,0.85);
 }
 
-/* =========================
-   ETERNAL = COSMIC WORLD OVERRIDE
-========================= */
-
-.eternal {
-  animation:
-    cosmicDrift 8s infinite linear,
-    cosmicGlow 3s infinite ease-in-out,
-    cosmicHue 12s infinite linear;
-  position: relative;
-}
-
-/* cosmic takeover effect when hovered */
-body.eternal-mode {
-  background: radial-gradient(circle at center, #0b0f1c, #000);
-  filter: saturate(1.4) brightness(1.2);
-}
-
-/* focus glow around eternal word */
-.eternal::after {
-  content: "";
-  position: absolute;
-  inset: -40px;
-  background: radial-gradient(circle, rgba(120,200,255,0.35), transparent 60%);
-  z-index: -1;
-  animation: eternalPulse 3s infinite ease-in-out;
+/* ETERNAL (cosmic global evolution) */
+body.eternal {
+  background: radial-gradient(circle at 50% 50%, #0a0a1a, #000);
+  filter: saturate(1.4) hue-rotate(20deg);
+  animation: cosmicDrift 10s infinite linear;
 }
 
 /* =========================
-   TERRIFYING - AFFECT NEIGHBORS SLIGHTLY
+   KEYFRAMES
 ========================= */
 
-.tier.near-terror {
-  transform: translateX(1px);
-  filter: brightness(1.1) contrast(1.05);
+@keyframes microShake {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
 }
 
-/* =========================
-   CATACLYSMIC GLOBAL SHAKE
-========================= */
-
-body.cataclysmic-mode {
-  animation: globalShake 0.2s infinite;
+@keyframes softPulse {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(1.4); }
 }
 
-/* =========================
-   CATASTROPHIC GLOBAL CORRUPTION
-========================= */
-
-body.catastrophic-mode {
-  animation: globalCorrupt 0.12s infinite;
+@keyframes driftScale {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(2px,-2px) scale(1.06); }
+  100% { transform: translate(0,0) scale(1); }
 }
 
-/* =========================
-   ABSURD LIMINAL KEYFRAME
-========================= */
-
-@keyframes liminalShift {
-  0% { transform: translate(0,0) scale(1); filter: hue-rotate(0deg); }
-  25% { transform: translate(-2px,1px) scale(1.02); filter: hue-rotate(90deg); }
-  50% { transform: translate(2px,-1px) scale(0.98); filter: hue-rotate(180deg); }
-  75% { transform: translate(-1px,2px) scale(1.01); filter: hue-rotate(270deg); }
-  100% { transform: translate(0,0) scale(1); filter: hue-rotate(360deg); }
+@keyframes rotateWobble {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
 }
 
-/* TERRIFYING STUTTER */
+@keyframes warp {
+  0% { transform: skewX(0deg) scale(1); }
+  100% { transform: skewX(12deg) scale(1.08); }
+}
+
+@keyframes glitchBurst {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
+
+@keyframes phaseShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(120deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+@keyframes dimensionalStretch {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.25,0.7); }
+}
+
 @keyframes terrorStutter {
   0% { transform: translate(0,0); }
-  20% { transform: translate(2px,-1px); }
-  40% { transform: translate(-2px,1px); }
-  60% { transform: translate(1px,2px); }
-  80% { transform: translate(-1px,-2px); }
+  25% { transform: translate(2px,-2px); }
+  50% { transform: translate(-2px,2px); }
   100% { transform: translate(0,0); }
 }
 
-/* STRUCTURAL COLLAPSE */
-@keyframes structuralCollapse {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.98) translateX(2px); }
-  100% { transform: scale(1); }
-}
-
-/* REALITY BREAK */
-@keyframes realityBreak {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(2px,-2px); }
-  100% { transform: translate(0,0); }
-}
-
-/* COSMIC */
 @keyframes cosmicDrift {
   0% { transform: translate(0,0); }
   50% { transform: translate(3px,-3px); }
   100% { transform: translate(0,0); }
 }
 
-@keyframes cosmicGlow {
-  0%,100% { text-shadow: 0 0 5px #fff, 0 0 10px #6cf; }
-  50% { text-shadow: 0 0 30px #6cf, 0 0 60px #f0f; }
-}
-
-@keyframes cosmicHue {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-@keyframes eternalPulse {
-  0%,100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
-}
-
-/* GLOBAL EFFECTS */
-@keyframes globalShake {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(2px,1px); }
-  50% { transform: translate(-2px,-1px); }
-  75% { transform: translate(1px,-2px); }
-  100% { transform: translate(0,0); }
-}
-
-@keyframes globalCorrupt {
-  0% { filter: hue-rotate(0deg) brightness(1); }
-  50% { filter: hue-rotate(120deg) brightness(1.2); }
-  100% { filter: hue-rotate(0deg) brightness(1); }
-}
-
 /* =========================
-   JS-DRIVEN NEAR EFFECT
+   LAYOUT
 ========================= */
 
-.terrifying-active .tier {
-  transition: transform 0.2s ease, filter 0.2s ease;
+.chart {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TRAIL EFFECT (catastrophic optional enhancement) */
+.trail {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.7;
 }
 </style>
 </head>
@@ -248,19 +231,17 @@ body.catastrophic-mode {
 
 <div class="chart">
 
-<!-- NORMAL -->
-<div class="tier"><div class="tooltip">Effortless</div></div>
-<div class="tier"><div class="tooltip">Cakewalk</div></div>
-<div class="tier"><div class="tooltip">Simple</div></div>
-<div class="tier"><div class="tooltip">Easy</div></div>
-<div class="tier"><div class="tooltip">Moderate</div></div>
-<div class="tier"><div class="tooltip">Medium</div></div>
-<div class="tier"><div class="tooltip">Advanced</div></div>
-<div class="tier"><div class="tooltip">Challenging</div></div>
-<div class="tier"><div class="tooltip">Difficult</div></div>
-<div class="tier"><div class="tooltip">Hard</div></div>
+<div class="tier" style="background:#208217;"><div class="tooltip">Effortless</div></div>
+<div class="tier" style="background:#649f1d;"><div class="tooltip">Cakewalk</div></div>
+<div class="tier" style="background:#91b91b;"><div class="tooltip">Simple</div></div>
+<div class="tier" style="background:#b3cd22;"><div class="tooltip">Easy</div></div>
+<div class="tier" style="background:#d9d81c;"><div class="tooltip">Moderate</div></div>
+<div class="tier" style="background:#d9ba1c;"><div class="tooltip">Medium</div></div>
+<div class="tier" style="background:#d99a1d;"><div class="tooltip">Advanced</div></div>
+<div class="tier" style="background:#d9861c;"><div class="tooltip">Challenging</div></div>
+<div class="tier" style="background:#d8691d;"><div class="tooltip">Difficult</div></div>
+<div class="tier" style="background:#f13d01;"><div class="tooltip">Hard</div></div>
 
-<!-- ESCALATION -->
 <div class="tier"><div class="tooltip"><span class="intense">Intense</span></div></div>
 <div class="tier"><div class="tooltip"><span class="severe">Severe</span></div></div>
 <div class="tier"><div class="tooltip"><span class="remorseless">Remorseless</span></div></div>
@@ -269,59 +250,47 @@ body.catastrophic-mode {
 <div class="tier"><div class="tooltip"><span class="insane">Insane</span></div></div>
 <div class="tier"><div class="tooltip"><span class="extreme">Extreme</span></div></div>
 <div class="tier"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
-<div class="tier" id="terrifyingTier"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
+<div class="tier" id="terrifying"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
 
-<!-- HIGH -->
-<div class="tier"><div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div></div>
-<div class="tier" id="catastrophicTier"><div class="tooltip"><span class="catastrophic">Catastrophic</span></div></div>
-
-<div class="tier" id="eternalTier"><div class="tooltip"><span class="eternal">Eternal</span></div></div>
+<div class="tier" id="catastrophic"><div class="tooltip"><span class="catastrophic">Catastrophic</span></div></div>
+<div class="tier" id="cataclysmic"><div class="tooltip">Cataclysmic</div></div>
+<div class="tier" id="eternal"><div class="tooltip">Eternal</div></div>
 
 </div>
 
 <script>
-const terrifyingTier = document.getElementById("terrifyingTier");
-const catastrophicTier = document.getElementById("catastrophicTier");
-const eternalTier = document.getElementById("eternalTier");
 const body = document.body;
 
-/* TERRIFYING: affects nearby tiers slightly */
-terrifyingTier.addEventListener("mouseenter", () => {
-  document.querySelectorAll(".tier").forEach(t => {
-    if (Math.random() > 0.7) t.classList.add("near-terror");
-  });
-  body.classList.add("terrifying-active");
+/* ETERNAL */
+document.getElementById("eternal").addEventListener("mouseenter", () => {
+  body.classList.add("eternal");
+});
+document.getElementById("eternal").addEventListener("mouseleave", () => {
+  body.classList.remove("eternal");
 });
 
-terrifyingTier.addEventListener("mouseleave", () => {
-  document.querySelectorAll(".tier").forEach(t => {
-    t.classList.remove("near-terror");
-  });
-  body.classList.remove("terrifying-active");
+/* TERRIFYING */
+document.getElementById("terrifying").addEventListener("mouseenter", () => {
+  body.classList.add("terrifying");
+});
+document.getElementById("terrifying").addEventListener("mouseleave", () => {
+  body.classList.remove("terrifying");
 });
 
-/* CATACLYSMIC: global shake */
-catastrophicTier.addEventListener("mouseenter", () => {
-  body.classList.add("cataclysmic-mode");
+/* CATASTROPHIC */
+document.getElementById("catastrophic").addEventListener("mouseenter", () => {
+  body.classList.add("catastrophic");
 });
-catastrophicTier.addEventListener("mouseleave", () => {
-  body.classList.remove("cataclysmic-mode");
-});
-
-/* CATASTROPHIC: deeper corruption */
-eternalTier.previousElementSibling.addEventListener("mouseenter", () => {
-  body.classList.add("catastrophic-mode");
-});
-eternalTier.previousElementSibling.addEventListener("mouseleave", () => {
-  body.classList.remove("catastrophic-mode");
+document.getElementById("catastrophic").addEventListener("mouseleave", () => {
+  body.classList.remove("catastrophic");
 });
 
-/* ETERNAL: full cosmic takeover */
-eternalTier.addEventListener("mouseenter", () => {
-  body.classList.add("eternal-mode");
+/* CATACLYSMIC */
+document.getElementById("cataclysmic").addEventListener("mouseenter", () => {
+  body.classList.add("cataclysmic");
 });
-eternalTier.addEventListener("mouseleave", () => {
-  body.classList.remove("eternal-mode");
+document.getElementById("cataclysmic").addEventListener("mouseleave", () => {
+  body.classList.remove("cataclysmic");
 });
 </script>
 
