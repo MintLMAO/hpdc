@@ -35,7 +35,7 @@ body {
   z-index: 5;
 }
 
-/* TOOLTIP (no black box anymore) */
+/* TOOLTIP (clean, no box) */
 .tooltip {
   position: absolute;
   right: 100%;
@@ -46,7 +46,7 @@ body {
   padding: 6px 10px;
   white-space: nowrap;
   pointer-events: none;
-  transition: transform 0.25s cubic-bezier(0.2,0.9,0.2,1), opacity 0.2s ease;
+  transition: transform 0.25s ease, opacity 0.2s ease;
   background: transparent;
   text-shadow: 0 0 6px rgba(0,0,0,0.85);
   font-weight: 600;
@@ -58,63 +58,75 @@ body {
 }
 
 /* =========================
-   ESCALATION SYSTEM (NEW)
+   ESCALATION SYSTEM
 ========================= */
 
-.intense { animation: microShake 0.18s infinite; }
+/* LOW → BUILDUP */
+.intense {
+  animation: microShake 0.22s infinite;
+}
 
 .severe {
-  animation: microShake 0.18s infinite, softPulse 0.6s infinite;
+  animation: microShake 0.18s infinite, softPulse 0.8s infinite;
 }
 
 .remorseless {
-  animation: driftScale 1.4s infinite linear;
+  animation: driftScale 1.6s infinite linear;
 }
 
 .vigorous {
-  animation: driftScale 1.2s infinite linear, rotateWobble 0.7s infinite;
+  animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite;
 }
 
 .savage {
-  animation: warp 0.5s infinite alternate;
+  animation: warp 0.7s infinite alternate;
 }
 
 .insane {
-  animation: warp 0.35s infinite alternate, glitchBurst 0.12s infinite;
+  animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite;
 }
 
+/* MID → REALITY BREAK */
 .extreme {
-  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite;
+  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite;
 }
 
 .absurd {
-  animation: dimensionalStretch 0.4s infinite, phaseShift 0.6s infinite;
+  animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite;
 }
 
 .terrifying {
   animation: collapseFlicker 0.22s infinite, dimensionalStretch 0.3s infinite;
 }
 
-/* CATACLYSMIC */
+/* CATACLYSMIC = STRUCTURAL FAILURE (not flicker chaos) */
 .cataclysmic {
-  animation: microShake 0.1s infinite, collapseFlicker 0.18s infinite;
+  animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
   font-weight: 800;
 }
 
-/* CATACLYSMIC SPECIAL */
+/* CATASTROPHIC = YOUR ORIGINAL CHAOTIC CORE */
 .catastrophic {
   font-weight: 900;
   animation: realityBreak 0.18s infinite;
-  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  text-shadow: 0 0 10px rgba(255,255,255,0.85);
 }
 
-/* ETERNAL = COSMIC SYSTEM */
+/* ETERNAL = COSMIC FIELD LEAK */
 .eternal {
   animation:
     cosmicDrift 8s infinite linear,
     cosmicGlow 3s infinite ease-in-out,
-    cosmicHue 12s infinite linear,
-    floatNoise 1.5s infinite;
+    cosmicHue 12s infinite linear;
+  position: relative;
+}
+
+.eternal::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(120,200,255,0.25), transparent 60%);
+  z-index: -1;
 }
 
 /* =========================
@@ -155,9 +167,9 @@ body {
 }
 
 @keyframes phaseShift {
-  0% { filter: hue-rotate(0deg) blur(0px); }
-  50% { filter: hue-rotate(120deg) blur(1px); }
-  100% { filter: hue-rotate(0deg) blur(0px); }
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(120deg); }
+  100% { filter: hue-rotate(0deg); }
 }
 
 @keyframes dimensionalStretch {
@@ -173,7 +185,16 @@ body {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* CATASTROPHIC BREAK */
+/* STRUCTURAL BREAK (cataclysmic) */
+@keyframes structuralCollapse {
+  0% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
+  25% { transform: translate(2px,-1px) scale(1.02); letter-spacing: 1px; }
+  50% { transform: translate(-2px,1px) scale(0.98); letter-spacing: -1px; }
+  75% { transform: translate(1px,2px) scale(1.03); letter-spacing: 0.5px; }
+  100% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
+}
+
+/* CATASTROPHIC CORE */
 @keyframes realityBreak {
   0% { transform: translate(0,0) scale(1); }
   20% { transform: translate(2px,-1px) scale(1.02); }
@@ -199,20 +220,17 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
-@keyframes floatNoise {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(1px,-1px); }
-  50% { transform: translate(-1px,2px); }
-  75% { transform: translate(2px,1px); }
-  100% { transform: translate(0,0); }
-}
-
 /* TRAIL */
 .trail {
   position: fixed;
   pointer-events: none;
   opacity: 0.85;
   z-index: 999;
+}
+
+/* catastrophic JS label positioning safety */
+#catLabel {
+  display: inline-block;
 }
 </style>
 </head>
@@ -244,12 +262,13 @@ body {
 <div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
 <div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
 
-<!-- CAT / COSMIC -->
+<!-- CATASTROPHIC -->
 <div class="tier" style="background:#ffffff;" id="catTier">
   <div class="tooltip"><span class="catastrophic" id="catLabel">Catastrophic</span></div>
 </div>
 
 <div class="tier" style="background:#464646;"><div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div></div>
+
 <div class="tier" style="background:#000000;"><div class="tooltip"><span class="eternal">Eternal</span></div></div>
 
 </div>
