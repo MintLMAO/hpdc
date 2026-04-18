@@ -35,7 +35,6 @@ body {
   z-index: 5;
 }
 
-/* TOOLTIP (clean, no box) */
 .tooltip {
   position: absolute;
   right: 100%;
@@ -57,85 +56,38 @@ body {
   transform: translate(-120%, -50%);
 }
 
-/* =========================
-   ESCALATION SYSTEM
-========================= */
+/* ESCALATION SYSTEM (unchanged) */
 
-.intense {
-  animation: microShake 0.22s infinite;
-}
+.intense { animation: microShake 0.22s infinite; }
+.severe { animation: microShake 0.18s infinite, softPulse 0.8s infinite; }
+.remorseless { animation: driftScale 1.6s infinite linear; }
+.vigorous { animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite; }
+.savage { animation: warp 0.7s infinite alternate; }
+.insane { animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite; }
+.extreme { animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite; }
+.absurd { animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite; }
 
-.severe {
-  animation: microShake 0.18s infinite, softPulse 0.8s infinite;
-}
-
-.remorseless {
-  animation: driftScale 1.6s infinite linear;
-}
-
-.vigorous {
-  animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite;
-}
-
-.savage {
-  animation: warp 0.7s infinite alternate;
-}
-
-.insane {
-  animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite;
-}
-
-.extreme {
-  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite;
-}
-
-.absurd {
-  animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite;
-}
-
-/* 🔥 FIXED TERRIFYING (now actually unsettling) */
 .terrifying {
-  animation:
-    terrorStutter 0.9s infinite steps(1),
-    collapseFlicker 0.18s infinite;
+  animation: terrorStutter 0.9s infinite steps(1),
+             collapseFlicker 0.18s infinite;
   transform-origin: center;
   font-weight: 700;
-  letter-spacing: 1px;
 }
 
-/* CATACLYSMIC = structural breakdown */
 .cataclysmic {
   animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
   font-weight: 800;
 }
 
-/* CATASTROPHIC (your original chaotic core restored) */
+/* CATASTROPHIC (now JS-driven chaos) */
 .catastrophic {
   font-weight: 900;
-  animation: realityBreak 0.18s infinite;
   text-shadow: 0 0 10px rgba(255,255,255,0.85);
-}
-
-/* ETERNAL = cosmic field */
-.eternal {
-  animation:
-    cosmicDrift 8s infinite linear,
-    cosmicGlow 3s infinite ease-in-out,
-    cosmicHue 12s infinite linear;
   position: relative;
+  display: inline-block;
 }
 
-.eternal::after {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(circle, rgba(120,200,255,0.25), transparent 60%);
-  z-index: -1;
-}
-
-/* =========================
-   KEYFRAMES
-========================= */
+/* KEYFRAMES */
 
 @keyframes microShake {
   0% { transform: translate(0,0); }
@@ -189,60 +141,22 @@ body {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* 🧠 NEW: terrifying instability (key improvement) */
 @keyframes terrorStutter {
-  0%   { transform: translate(0,0) scale(1); }
-  10%  { transform: translate(1px,-1px) scale(1.02); }
-  20%  { transform: translate(-2px,1px) scale(0.98); }
-  30%  { transform: translate(0,0) scale(1); }
-  40%  { transform: translate(2px,2px) scale(1.01); }
-  50%  { transform: translate(-1px,-2px) scale(0.99); }
-  60%  { transform: translate(0,0) scale(1); }
-  100% { transform: translate(0,0) scale(1); }
+  0% { transform: translate(0,0); }
+  25% { transform: translate(2px,-2px); }
+  50% { transform: translate(-2px,2px); }
+  75% { transform: translate(1px,1px); }
+  100% { transform: translate(0,0); }
 }
 
-/* STRUCTURAL BREAK */
 @keyframes structuralCollapse {
-  0% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
-  25% { transform: translate(2px,-1px) scale(1.02); letter-spacing: 1px; }
-  50% { transform: translate(-2px,1px) scale(0.98); letter-spacing: -1px; }
-  75% { transform: translate(1px,2px) scale(1.03); letter-spacing: 0.5px; }
-  100% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
+  0% { transform: translate(0,0); }
+  25% { transform: translate(2px,-1px); }
+  50% { transform: translate(-2px,2px); }
+  75% { transform: translate(1px,2px); }
+  100% { transform: translate(0,0); }
 }
 
-/* CATASTROPHIC CORE */
-@keyframes realityBreak {
-  0% { transform: translate(0,0) scale(1); }
-  20% { transform: translate(2px,-1px) scale(1.02); }
-  40% { transform: translate(-2px,2px) scale(0.98); }
-  60% { transform: translate(1px,1px) scale(1.03); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-/* COSMIC */
-@keyframes cosmicDrift {
-  0% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(3px,-3px) scale(1.05); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-@keyframes cosmicGlow {
-  0%,100% { text-shadow: 0 0 5px #fff, 0 0 10px #6cf; }
-  50% { text-shadow: 0 0 20px #fff, 0 0 40px #6cf, 0 0 60px #f0f; }
-}
-
-@keyframes cosmicHue {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-/* TRAIL */
-.trail {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0.85;
-  z-index: 999;
-}
 </style>
 </head>
 
@@ -275,49 +189,49 @@ body {
 
 <!-- CATASTROPHIC -->
 <div class="tier" style="background:#ffffff;" id="catTier">
-  <div class="tooltip"><span class="catastrophic" id="catLabel">Catastrophic</span></div>
+  <div class="tooltip">
+    <span class="catastrophic" id="catLabel">Catastrophic</span>
+  </div>
 </div>
 
 <div class="tier" style="background:#464646;"><div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div></div>
-
-<div class="tier" style="background:#000000;"><div class="tooltip"><span class="eternal">Eternal</span></div></div>
+<div class="tier" style="background:#000000;"><div class="tooltip">Eternal</div></div>
 
 </div>
 
 <script>
 const cat = document.getElementById("catLabel");
-const catTier = document.getElementById("catTier");
 
-let catX = 0, catY = 0, t = 0, hovering = false;
+/* CATASTROPHIC: chaotic random-walk jitter */
+let x = 0, y = 0;
+let vx = 0, vy = 0;
 
-function shake() {
-  t += 0.22;
-  catX = Math.sin(t*2)*4;
-  catY = Math.cos(t*1.8)*4;
-  cat.style.transform = `translate(${catX}px, ${catY}px)`;
+function updateCatastrophic() {
+  // random force injection
+  vx += (Math.random() - 0.5) * 1.5;
+  vy += (Math.random() - 0.5) * 1.5;
+
+  // damping so it doesn’t explode
+  vx *= 0.82;
+  vy *= 0.82;
+
+  // sudden instability spikes
+  if (Math.random() < 0.07) {
+    vx += (Math.random() - 0.5) * 7;
+    vy += (Math.random() - 0.5) * 7;
+  }
+
+  x += vx;
+  y += vy;
+
+  // keep readable bounds
+  x = Math.max(-7, Math.min(7, x));
+  y = Math.max(-7, Math.min(7, y));
+
+  cat.style.transform = `translate(${x}px, ${y}px)`;
 }
-setInterval(shake, 16);
 
-function trail() {
-  if (!hovering) return;
-
-  const rect = cat.getBoundingClientRect();
-  const ghost = document.createElement("span");
-  ghost.className = "trail";
-  ghost.innerText = "Catastrophic";
-
-  ghost.style.left = rect.left + "px";
-  ghost.style.top = rect.top + "px";
-  ghost.style.transform = `translate(${catX}px, ${catY}px)`;
-  ghost.style.color = `hsl(${Math.random()*360},100%,75%)`;
-
-  document.body.appendChild(ghost);
-  setTimeout(()=>ghost.remove(), 40);
-}
-setInterval(trail, 80);
-
-catTier.addEventListener("mouseenter", ()=>hovering=true);
-catTier.addEventListener("mouseleave", ()=>hovering=false);
+setInterval(updateCatastrophic, 16);
 </script>
 
 </body>
