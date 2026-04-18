@@ -47,7 +47,7 @@ body {
   border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
-  transition: 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.2,0.9,0.2,1), opacity 0.2s ease;
 }
 
 .tier:hover .tooltip {
@@ -55,56 +55,105 @@ body {
   transform: translate(-120%, -50%);
 }
 
+.label {
+  display: inline-block;
+}
+
 /* =========================
-   RESTORED ESCALATION (STACKED)
+   ESCALATION STACK
 ========================= */
 
+/* base subtle jitter */
 .intense {
   animation: jitter 0.15s infinite;
 }
 
+/* + brightness pulse */
 .severe {
-  animation: jitter 0.15s infinite, flash 0.4s infinite;
+  animation:
+    jitter 0.15s infinite,
+    flash 0.4s infinite;
 }
 
+/* + scaling pressure */
 .remorseless {
-  animation: jitter 0.15s infinite, flash 0.4s infinite, scaleUp 2s infinite linear;
+  animation:
+    jitter 0.15s infinite,
+    flash 0.4s infinite,
+    scaleUp 2s infinite linear;
 }
 
+/* + stronger shake */
 .vigorous {
-  animation: shake 0.08s infinite, flash 0.4s infinite, scaleUp 2s infinite linear;
+  animation:
+    shake 0.08s infinite,
+    flash 0.4s infinite,
+    scaleUp 2s infinite linear;
 }
 
+/* + skew tearing */
 .savage {
-  animation: shake 0.08s infinite, flash 0.4s infinite, skew 0.3s infinite alternate;
+  animation:
+    shake 0.08s infinite,
+    flash 0.4s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate;
 }
 
+/* + glitch */
 .insane {
-  animation: shake 0.08s infinite, flash 0.3s infinite, glitch 0.15s infinite;
+  animation:
+    shake 0.08s infinite,
+    flash 0.3s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate,
+    glitch 0.15s infinite;
 }
 
+/* + rotation instability */
 .extreme {
-  animation: shake 0.08s infinite, flash 0.3s infinite, rotateWobble 0.6s infinite;
+  animation:
+    shake 0.08s infinite,
+    flash 0.3s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate,
+    glitch 0.15s infinite,
+    rotateWobble 0.6s infinite;
 }
 
+/* + distortion */
 .absurd {
-  animation: shake 0.08s infinite, flash 0.3s infinite, stretch 0.4s infinite;
+  animation:
+    shake 0.08s infinite,
+    flash 0.3s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.3s infinite alternate,
+    glitch 0.15s infinite,
+    rotateWobble 0.6s infinite,
+    stretch 0.4s infinite;
 }
 
+/* + flicker chaos */
 .terrifying {
-  animation: shake 0.06s infinite, flicker 0.18s infinite, flash 0.2s infinite;
+  animation:
+    shake 0.06s infinite,
+    flash 0.2s infinite,
+    scaleUp 2s infinite linear,
+    skew 0.25s infinite alternate,
+    glitch 0.12s infinite,
+    rotateWobble 0.5s infinite,
+    stretch 0.35s infinite,
+    flicker 0.18s infinite;
 }
 
-/* =========================
-   YOUR ORIGINAL CAT / ETERNAL
-========================= */
-
+/* catastrophic handled separately */
 .catastrophic {
   position: relative;
   z-index: 1000;
   font-weight: bold;
 }
 
+/* cataclysmic = unstable collapse */
 .cataclysmic {
   animation:
     shake 0.05s infinite,
@@ -115,6 +164,7 @@ body {
     rotateWobble 0.4s infinite;
 }
 
+/* ETERNAL = COSMIC */
 .eternal {
   animation:
     cosmicDrift 6s infinite linear,
@@ -123,7 +173,7 @@ body {
 }
 
 /* =========================
-   KEYFRAMES (RESTORED CORE)
+   KEYFRAMES
 ========================= */
 
 @keyframes jitter {
@@ -198,13 +248,14 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
-/* TRAIL (UNCHANGED) */
+/* TRAIL */
 .trail {
   position: fixed;
   pointer-events: none;
   opacity: 0.85;
   z-index: 999;
 }
+
 </style>
 </head>
 
@@ -213,53 +264,52 @@ body {
 <div class="chart">
 
 <!-- NORMAL -->
-<div class="tier" style="background:#208217;"><div class="tooltip">Effortless</div></div>
-<div class="tier" style="background:#649f1d;"><div class="tooltip">Cakewalk</div></div>
-<div class="tier" style="background:#91b91b;"><div class="tooltip">Simple</div></div>
-<div class="tier" style="background:#b3cd22;"><div class="tooltip">Easy</div></div>
-<div class="tier" style="background:#d9d81c;"><div class="tooltip">Moderate</div></div>
-<div class="tier" style="background:#d9ba1c;"><div class="tooltip">Medium</div></div>
-<div class="tier" style="background:#d99a1d;"><div class="tooltip">Advanced</div></div>
-<div class="tier" style="background:#d9861c;"><div class="tooltip">Challenging</div></div>
-<div class="tier" style="background:#d8691d;"><div class="tooltip">Difficult</div></div>
-<div class="tier" style="background:#f13d01;"><div class="tooltip">Hard</div></div>
+<div class="tier" style="background:#208217;"><div class="tooltip"><span class="label">Effortless</span></div></div>
+<div class="tier" style="background:#649f1d;"><div class="tooltip"><span class="label">Cakewalk</span></div></div>
+<div class="tier" style="background:#91b91b;"><div class="tooltip"><span class="label">Simple</span></div></div>
+<div class="tier" style="background:#b3cd22;"><div class="tooltip"><span class="label">Easy</span></div></div>
+<div class="tier" style="background:#d9d81c;"><div class="tooltip"><span class="label">Moderate</span></div></div>
+<div class="tier" style="background:#d9ba1c;"><div class="tooltip"><span class="label">Medium</span></div></div>
+<div class="tier" style="background:#d99a1d;"><div class="tooltip"><span class="label">Advanced</span></div></div>
+<div class="tier" style="background:#d9861c;"><div class="tooltip"><span class="label">Challenging</span></div></div>
+<div class="tier" style="background:#d8691d;"><div class="tooltip"><span class="label">Difficult</span></div></div>
+<div class="tier" style="background:#f13d01;"><div class="tooltip"><span class="label">Hard</span></div></div>
 
 <!-- ESCALATION -->
-<div class="tier" style="background:#a30800;"><div class="tooltip"><span class="intense">Intense</span></div></div>
-<div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="severe">Severe</span></div></div>
-<div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="remorseless">Remorseless</span></div></div>
-<div class="tier" style="background:#8b0097;"><div class="tooltip"><span class="vigorous">Vigorous</span></div></div>
-<div class="tier" style="background:#3e0052;"><div class="tooltip"><span class="savage">Savage</span></div></div>
-<div class="tier" style="background:#2734ff;"><div class="tooltip"><span class="insane">Insane</span></div></div>
-<div class="tier" style="background:#2888ff;"><div class="tooltip"><span class="extreme">Extreme</span></div></div>
-<div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
-<div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
+<div class="tier" style="background:#a30800;"><div class="tooltip"><span class="label intense">Intense</span></div></div>
+<div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="label severe">Severe</span></div></div>
+<div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="label remorseless">Remorseless</span></div></div>
+<div class="tier" style="background:#8b0097;"><div class="tooltip"><span class="label vigorous">Vigorous</span></div></div>
+<div class="tier" style="background:#3e0052;"><div class="tooltip"><span class="label savage">Savage</span></div></div>
+<div class="tier" style="background:#2734ff;"><div class="tooltip"><span class="label insane">Insane</span></div></div>
+<div class="tier" style="background:#2888ff;"><div class="tooltip"><span class="label extreme">Extreme</span></div></div>
+<div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="label absurd">Absurd</span></div></div>
+<div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="label terrifying">Terrifying</span></div></div>
 
-<!-- CAT / ETERNAL RESTORED -->
 <div class="tier" style="background:#ffffff;" id="catTier">
   <div class="tooltip">
-    <span class="catastrophic" id="catLabel">Catastrophic</span>
+    <span class="label catastrophic" id="catLabel">Catastrophic</span>
   </div>
 </div>
 
-<div class="tier" style="background:#464646;"><div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div></div>
-<div class="tier" style="background:#000000;"><div class="tooltip"><span class="eternal">Eternal</span></div></div>
+<div class="tier" style="background:#464646;"><div class="tooltip"><span class="label cataclysmic">Cataclysmic</span></div></div>
+<div class="tier" style="background:#000000;"><div class="tooltip"><span class="label eternal">Eternal</span></div></div>
 
 </div>
 
 <script>
 const cat = document.getElementById("catLabel");
-let t = 0;
+const catTier = document.getElementById("catTier");
 
-function shakeCat() {
+let catX = 0, catY = 0, t = 0, hovering = false;
+
+function shake() {
   t += 0.22;
-  const x = Math.sin(t*2)*4;
-  const y = Math.cos(t*1.8)*4;
-  cat.style.transform = `translate(${x}px, ${y}px)`;
+  catX = Math.sin(t*2)*4;
+  catY = Math.cos(t*1.8)*4;
+  cat.style.transform = `translate(${catX}px, ${catY}px)`;
 }
-setInterval(shakeCat, 16);
-
-let hovering = false;
+setInterval(shake, 16);
 
 function trail() {
   if (!hovering) return;
@@ -271,6 +321,7 @@ function trail() {
 
   ghost.style.left = rect.left + "px";
   ghost.style.top = rect.top + "px";
+  ghost.style.transform = `translate(${catX}px, ${catY}px)`;
   ghost.style.color = `hsl(${Math.random()*360},100%,75%)`;
 
   document.body.appendChild(ghost);
@@ -278,11 +329,8 @@ function trail() {
 }
 setInterval(trail, 80);
 
-document.getElementById("catTier")
-  .addEventListener("mouseenter", ()=>hovering=true);
-
-document.getElementById("catTier")
-  .addEventListener("mouseleave", ()=>hovering=false);
+catTier.addEventListener("mouseenter", ()=>hovering=true);
+catTier.addEventListener("mouseleave", ()=>hovering=false);
 </script>
 
 </body>
