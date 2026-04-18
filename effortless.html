@@ -1,18 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Effortless</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;background:#0f0f14;color:white;font-family:Arial;padding:40px}
-a{color:white;opacity:.7;text-decoration:none}
-a:hover{opacity:1}
+body {
+  margin: 0;
+  font-family: 'Overpass', sans-serif;
+  color: white;
+  overflow-x: hidden;
+  background: #0f0f14;
+}
+
+/* soft effortless ambient background */
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(32,130,23,0.25), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(90,200,120,0.15), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(120,255,180,0.08), transparent 50%);
+  filter: blur(20px);
+  animation: floatBG 8s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes floatBG {
+  0% { transform: scale(1) translateY(0px); }
+  100% { transform: scale(1.1) translateY(-20px); }
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 30px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.back:hover {
+  color: white;
+  transform: translateX(-4px);
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+}
+
+h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: 1px;
+}
+
+.sub {
+  margin-top: 8px;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(32,130,23,0.25);
+  border: 1px solid rgba(32,130,23,0.5);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.section {
+  margin-top: 25px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
 </style>
 </head>
+
 <body>
-<a href="index.html">← Back</a>
-<h1>Effortless</h1>
-<p><b>Color:</b> #208217</p>
-<p>Beginner level. Barely any challenge.</p>
-<ul><li>Parkour 1</li></ul>
+
+<div class="bg"></div>
+
+<div class="container">
+
+  <a class="back" href="index.html">← Back</a>
+
+  <div class="card">
+
+    <h1>Effortless</h1>
+    <div class="sub">Beginner-friendly introduction tier</div>
+
+    <div class="tag">Tier: Tutorial</div>
+
+    <div class="section">
+      Barely any challenge. Designed to introduce basic movement and controls in a safe, forgiving environment.
+    </div>
+
+    <div class="section">
+      <b>Stages:</b>
+      <ul>
+        <li>Parkour 1</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>

@@ -57,39 +57,71 @@ body {
   transform: translate(-120%, -50%);
 }
 
-/* (all your animations unchanged...) */
-.intense { animation: microShake 0.22s infinite; }
-.severe { animation: microShake 0.18s infinite, softPulse 0.8s infinite; }
-.remorseless { animation: driftScale 1.6s infinite linear; }
-.vigorous { animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite; }
-.savage { animation: warp 0.7s infinite alternate; }
-.insane { animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite; }
-.extreme { animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite; }
-.absurd { animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite; }
+/* =========================
+   ESCALATION SYSTEM
+========================= */
 
+.intense {
+  animation: microShake 0.22s infinite;
+}
+
+.severe {
+  animation: microShake 0.18s infinite, softPulse 0.8s infinite;
+}
+
+.remorseless {
+  animation: driftScale 1.6s infinite linear;
+}
+
+.vigorous {
+  animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite;
+}
+
+.savage {
+  animation: warp 0.7s infinite alternate;
+}
+
+.insane {
+  animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite;
+}
+
+.extreme {
+  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite;
+}
+
+.absurd {
+  animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite;
+}
+
+/* 🔥 FIXED TERRIFYING (now actually unsettling) */
 .terrifying {
-  animation: terrorStutter 0.9s infinite steps(1),
-             collapseFlicker 0.18s infinite;
+  animation:
+    terrorStutter 0.9s infinite steps(1),
+    collapseFlicker 0.18s infinite;
   transform-origin: center;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
+/* CATACLYSMIC = structural breakdown */
 .cataclysmic {
   animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
   font-weight: 800;
 }
 
+/* CATASTROPHIC (your original chaotic core restored) */
 .catastrophic {
   font-weight: 900;
   animation: realityBreak 0.18s infinite;
   text-shadow: 0 0 10px rgba(255,255,255,0.85);
 }
 
+/* ETERNAL = cosmic field */
 .eternal {
-  animation: cosmicDrift 8s infinite linear,
-             cosmicGlow 3s infinite ease-in-out,
-             cosmicHue 12s infinite linear;
+  animation:
+    cosmicDrift 8s infinite linear,
+    cosmicGlow 3s infinite ease-in-out,
+    cosmicHue 12s infinite linear;
   position: relative;
 }
 
@@ -101,36 +133,96 @@ body {
   z-index: -1;
 }
 
-/* keyframes unchanged */
-@keyframes microShake { 0% { transform: translate(0,0); } 50% { transform: translate(1px,-1px); } 100% { transform: translate(0,0); } }
-@keyframes softPulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
-@keyframes driftScale { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(2px,-2px) scale(1.06); } 100% { transform: translate(0,0) scale(1); } }
-@keyframes rotateWobble { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
-@keyframes warp { 0% { transform: skewX(0deg) scale(1); } 100% { transform: skewX(12deg) scale(1.08); } }
-@keyframes glitchBurst { 0% { text-shadow: 2px 0 red, -2px 0 cyan; } 50% { text-shadow: -3px 0 red, 3px 0 cyan; } 100% { text-shadow: 2px 0 red, -2px 0 cyan; } }
-@keyframes phaseShift { 0% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(120deg); } 100% { filter: hue-rotate(0deg); } }
-@keyframes dimensionalStretch { 0%,100% { transform: scale(1,1) skewX(0deg); } 50% { transform: scale(1.25,0.7) skewX(10deg); } }
-@keyframes collapseFlicker { 0% { opacity: 1; transform: scale(1); } 25% { opacity: 0.3; } 50% { opacity: 1; transform: scale(0.85); } 75% { opacity: 0.2; } 100% { opacity: 1; transform: scale(1); } }
+/* =========================
+   KEYFRAMES
+========================= */
 
+@keyframes microShake {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
+}
+
+@keyframes softPulse {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(1.4); }
+}
+
+@keyframes driftScale {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(2px,-2px) scale(1.06); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes rotateWobble {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes warp {
+  0% { transform: skewX(0deg) scale(1); }
+  100% { transform: skewX(12deg) scale(1.08); }
+}
+
+@keyframes glitchBurst {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
+
+@keyframes phaseShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(120deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+@keyframes dimensionalStretch {
+  0%,100% { transform: scale(1,1) skewX(0deg); }
+  50% { transform: scale(1.25,0.7) skewX(10deg); }
+}
+
+@keyframes collapseFlicker {
+  0% { opacity: 1; transform: scale(1); }
+  25% { opacity: 0.3; }
+  50% { opacity: 1; transform: scale(0.85); }
+  75% { opacity: 0.2; }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* 🧠 NEW: terrifying instability (key improvement) */
 @keyframes terrorStutter {
   0%   { transform: translate(0,0) scale(1); }
   10%  { transform: translate(1px,-1px) scale(1.02); }
   20%  { transform: translate(-2px,1px) scale(0.98); }
+  30%  { transform: translate(0,0) scale(1); }
+  40%  { transform: translate(2px,2px) scale(1.01); }
+  50%  { transform: translate(-1px,-2px) scale(0.99); }
+  60%  { transform: translate(0,0) scale(1); }
   100% { transform: translate(0,0) scale(1); }
 }
 
+/* STRUCTURAL BREAK */
 @keyframes structuralCollapse {
   0% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
+  25% { transform: translate(2px,-1px) scale(1.02); letter-spacing: 1px; }
+  50% { transform: translate(-2px,1px) scale(0.98); letter-spacing: -1px; }
+  75% { transform: translate(1px,2px) scale(1.03); letter-spacing: 0.5px; }
   100% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
 }
 
+/* CATASTROPHIC CORE */
 @keyframes realityBreak {
   0% { transform: translate(0,0) scale(1); }
+  20% { transform: translate(2px,-1px) scale(1.02); }
+  40% { transform: translate(-2px,2px) scale(0.98); }
+  60% { transform: translate(1px,1px) scale(1.03); }
   100% { transform: translate(0,0) scale(1); }
 }
 
+/* COSMIC */
 @keyframes cosmicDrift {
   0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(3px,-3px) scale(1.05); }
   100% { transform: translate(0,0) scale(1); }
 }
 
@@ -144,6 +236,7 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
+/* TRAIL */
 .trail {
   position: fixed;
   pointer-events: none;
@@ -161,7 +254,6 @@ body {
 <div class="tier" style="background:#208217;" onclick="location.href='effortless.html'">
   <div class="tooltip">Effortless</div>
 </div>
-
 <div class="tier" style="background:#649f1d;"><div class="tooltip">Cakewalk</div></div>
 <div class="tier" style="background:#91b91b;"><div class="tooltip">Simple</div></div>
 <div class="tier" style="background:#b3cd22;"><div class="tooltip">Easy</div></div>
@@ -196,15 +288,38 @@ body {
 
 <script>
 const cat = document.getElementById("catLabel");
-let t = 0;
+const catTier = document.getElementById("catTier");
+
+let catX = 0, catY = 0, t = 0, hovering = false;
 
 function shake() {
   t += 0.22;
-  const x = Math.sin(t*2)*4;
-  const y = Math.cos(t*1.8)*4;
-  cat.style.transform = `translate(${x}px, ${y}px)`;
+  catX = Math.sin(t*2)*4;
+  catY = Math.cos(t*1.8)*4;
+  cat.style.transform = `translate(${catX}px, ${catY}px)`;
 }
 setInterval(shake, 16);
+
+function trail() {
+  if (!hovering) return;
+
+  const rect = cat.getBoundingClientRect();
+  const ghost = document.createElement("span");
+  ghost.className = "trail";
+  ghost.innerText = "Catastrophic";
+
+  ghost.style.left = rect.left + "px";
+  ghost.style.top = rect.top + "px";
+  ghost.style.transform = `translate(${catX}px, ${catY}px)`;
+  ghost.style.color = `hsl(${Math.random()*360},100%,75%)`;
+
+  document.body.appendChild(ghost);
+  setTimeout(()=>ghost.remove(), 40);
+}
+setInterval(trail, 80);
+
+catTier.addEventListener("mouseenter", ()=>hovering=true);
+catTier.addEventListener("mouseleave", ()=>hovering=false);
 </script>
 
 </body>
