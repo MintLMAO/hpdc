@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Difficulty Chart</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
@@ -11,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Overpass', sans-serif;
 }
 
 .chart {
@@ -63,114 +65,105 @@ body {
    EFFECTS
 ========================= */
 
-/* INTENSE */
 .intense {
-  animation: intenseFlash 0.2s infinite;
+  animation: intense 0.15s infinite;
 }
-@keyframes intenseFlash {
-  0%,100% { opacity:1; }
-  50% { opacity:0.3; }
+@keyframes intense {
+  0%,100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(2); }
 }
 
-/* SEVERE */
 .severe {
-  animation: severePulse 0.6s infinite;
+  animation: severe 0.5s infinite;
 }
-@keyframes severePulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+@keyframes severe {
+  0%,90%,100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
 }
 
-/* REMORSELESS */
 .remorseless {
-  animation: remorselessPulse 1.2s infinite;
+  animation: remorseless 2.5s infinite linear;
 }
-@keyframes remorselessPulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+@keyframes remorseless {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
 }
 
-/* VIGOROUS */
 .vigorous {
-  animation: vigorousShake 0.08s infinite;
+  animation: vigorous 0.12s infinite;
 }
-@keyframes vigorousShake {
+@keyframes vigorous {
   0% { transform: translate(0,0); }
-  25% { transform: translate(1px,-1px); }
-  50% { transform: translate(-1px,1px); }
-  75% { transform: translate(1px,1px); }
-  100% { transform: translate(-1px,-1px); }
+  25% { transform: translate(2px,-1px); }
+  50% { transform: translate(-2px,1px); }
+  75% { transform: translate(1px,2px); }
+  100% { transform: translate(-1px,-2px); }
 }
 
-/* SAVAGE */
 .savage {
-  animation: savageSkew 0.5s infinite alternate;
+  animation: savage 0.3s infinite alternate;
 }
-@keyframes savageSkew {
-  0% { transform: skew(0deg); }
-  100% { transform: skew(10deg); }
+@keyframes savage {
+  0% { transform: skewX(0deg); }
+  100% { transform: skewX(18deg); }
 }
 
-/* INSANE */
 .insane {
-  position: relative;
-  animation: insaneGlitch 0.2s infinite;
+  animation: insane 0.15s infinite;
 }
-@keyframes insaneGlitch {
-  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
-  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+@keyframes insane {
+  0% { text-shadow: 3px 0 red, -3px 0 cyan; }
+  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
+  100% { text-shadow: 3px 0 red, -3px 0 cyan; }
 }
 
-/* EXTREME */
 .extreme {
-  animation: extremeSpin 1s infinite linear;
+  animation: extreme 0.6s infinite;
 }
-@keyframes extremeSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes extreme {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
 }
 
-/* ABSURD */
 .absurd {
-  animation: absurdStretch 0.6s infinite;
+  animation: absurd 0.4s infinite;
 }
-@keyframes absurdStretch {
-  0%,100% { transform: scaleY(1); }
-  50% { transform: scaleY(1.5); }
+@keyframes absurd {
+  0% { transform: scale(1,1); }
+  50% { transform: scale(1.3,0.6) skew(10deg); }
+  100% { transform: scale(1,1); }
 }
 
-/* TERRIFYING */
 .terrifying {
-  animation: terrifyingFade 0.3s infinite;
+  animation: terrifying 0.18s infinite;
 }
-@keyframes terrifyingFade {
-  0%,100% { opacity:1; }
-  50% { opacity:0.2; }
+@keyframes terrifying {
+  0% { opacity:1; transform: translate(0,0); }
+  20% { opacity:0.2; transform: translate(-2px,1px); }
+  40% { opacity:1; transform: translate(2px,-2px); }
+  60% { opacity:0.1; transform: translate(-1px,2px); }
+  80% { opacity:1; transform: translate(1px,-1px); }
+  100% { opacity:1; transform: translate(0,0); }
 }
 
-/* CATASTROPHIC (kept your system) */
 .catastrophic {
   position: relative;
   z-index: 1000;
   font-weight: bold;
 }
 
-/* CATACLYSMIC */
 .cataclysmic {
-  animation: cataclysmicDrift 2s infinite;
+  animation: cataclysmic 1.5s infinite;
 }
-@keyframes cataclysmicDrift {
-  0% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.1) rotate(5deg); }
-  100% { transform: scale(1) rotate(0deg); }
+@keyframes cataclysmic {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(0.7); }
 }
 
-/* ETERNAL */
 .eternal {
-  animation: eternalGlow 2s infinite;
+  animation: eternal 2s infinite;
 }
-@keyframes eternalGlow {
+@keyframes eternal {
   0%,100% { text-shadow: 0 0 5px gold; }
   50% { text-shadow: 0 0 20px gold; }
 }
@@ -181,7 +174,6 @@ body {
   pointer-events: none;
   opacity: 0.85;
   z-index: 999;
-  filter: blur(0.4px);
 }
 
 </style>
@@ -191,57 +183,38 @@ body {
 
 <div class="chart">
 
-<!-- (shortened earlier tiers for clarity) -->
+<!-- NORMAL TIERS -->
+<div class="tier" style="background:#208217;"><div class="tooltip"><span class="label">Effortless</span></div></div>
+<div class="tier" style="background:#649f1d;"><div class="tooltip"><span class="label">Cakewalk</span></div></div>
+<div class="tier" style="background:#91b91b;"><div class="tooltip"><span class="label">Simple</span></div></div>
+<div class="tier" style="background:#b3cd22;"><div class="tooltip"><span class="label">Easy</span></div></div>
+<div class="tier" style="background:#d9d81c;"><div class="tooltip"><span class="label">Moderate</span></div></div>
+<div class="tier" style="background:#d9ba1c;"><div class="tooltip"><span class="label">Medium</span></div></div>
+<div class="tier" style="background:#d99a1d;"><div class="tooltip"><span class="label">Advanced</span></div></div>
+<div class="tier" style="background:#d9861c;"><div class="tooltip"><span class="label">Challenging</span></div></div>
+<div class="tier" style="background:#d8691d;"><div class="tooltip"><span class="label">Difficult</span></div></div>
+<div class="tier" style="background:#f13d01;"><div class="tooltip"><span class="label">Hard</span></div></div>
 
-<div class="tier" style="background:#a30800;">
-  <div class="tooltip"><span class="label intense">Intense</span></div>
-</div>
+<!-- EFFECT TIERS -->
+<div class="tier" style="background:#a30800;"><div class="tooltip"><span class="label intense">Intense</span></div></div>
+<div class="tier" style="background:#3d0301;"><div class="tooltip"><span class="label severe">Severe</span></div></div>
+<div class="tier" style="background:#fe01d3;"><div class="tooltip"><span class="label remorseless">Remorseless</span></div></div>
+<div class="tier" style="background:#8b0097;"><div class="tooltip"><span class="label vigorous">Vigorous</span></div></div>
+<div class="tier" style="background:#3e0052;"><div class="tooltip"><span class="label savage">Savage</span></div></div>
+<div class="tier" style="background:#2734ff;"><div class="tooltip"><span class="label insane">Insane</span></div></div>
+<div class="tier" style="background:#2888ff;"><div class="tooltip"><span class="label extreme">Extreme</span></div></div>
+<div class="tier" style="background:#00ff99;"><div class="tooltip"><span class="label absurd">Absurd</span></div></div>
+<div class="tier" style="background:#28fdff;"><div class="tooltip"><span class="label terrifying">Terrifying</span></div></div>
 
-<div class="tier" style="background:#3d0301;">
-  <div class="tooltip"><span class="label severe">Severe</span></div>
-</div>
-
-<div class="tier" style="background:#fe01d3;">
-  <div class="tooltip"><span class="label remorseless">Remorseless</span></div>
-</div>
-
-<div class="tier" style="background:#8b0097;">
-  <div class="tooltip"><span class="label vigorous">Vigorous</span></div>
-</div>
-
-<div class="tier" style="background:#3e0052;">
-  <div class="tooltip"><span class="label savage">Savage</span></div>
-</div>
-
-<div class="tier" style="background:#2734ff;">
-  <div class="tooltip"><span class="label insane">Insane</span></div>
-</div>
-
-<div class="tier" style="background:#2888ff;">
-  <div class="tooltip"><span class="label extreme">Extreme</span></div>
-</div>
-
-<div class="tier" style="background:#00ff99;">
-  <div class="tooltip"><span class="label absurd">Absurd</span></div>
-</div>
-
-<div class="tier" style="background:#28fdff;">
-  <div class="tooltip"><span class="label terrifying">Terrifying</span></div>
-</div>
-
+<!-- CATASTROPHIC -->
 <div class="tier" style="background:#ffffff;" id="catTier">
   <div class="tooltip">
     <span class="label catastrophic" id="catLabel">Catastrophic</span>
   </div>
 </div>
 
-<div class="tier" style="background:#464646;">
-  <div class="tooltip"><span class="label cataclysmic">Cataclysmic</span></div>
-</div>
-
-<div class="tier" style="background:#000000;">
-  <div class="tooltip"><span class="label eternal">Eternal</span></div>
-</div>
+<div class="tier" style="background:#464646;"><div class="tooltip"><span class="label cataclysmic">Cataclysmic</span></div></div>
+<div class="tier" style="background:#000000;"><div class="tooltip"><span class="label eternal">Eternal</span></div></div>
 
 </div>
 
