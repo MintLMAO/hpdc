@@ -102,11 +102,11 @@ body {
   text-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
-/* TRAIL (NO ANIMATION, NO DRIFT) */
+/* TRAIL */
 .trail {
   position: fixed;
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.9;
   z-index: 999;
   filter: blur(0.4px);
 }
@@ -223,7 +223,7 @@ let catY = 0;
 let t = 0;
 let hovering = false;
 
-/* SHAKE (CONTROLLED) */
+/* SHAKE */
 function shakeCatastrophic() {
   if (!cat) return;
 
@@ -239,7 +239,7 @@ function shakeCatastrophic() {
 
 setInterval(shakeCatastrophic, 16);
 
-/* TRAIL (INSTANT DISAPPEAR) */
+/* TRAIL */
 function spawnTrail() {
   if (!cat || !hovering) return;
 
@@ -256,12 +256,12 @@ function spawnTrail() {
 
   document.body.appendChild(ghost);
 
-  setTimeout(() => ghost.remove(), 120); // instant-ish vanish
+  setTimeout(() => ghost.remove(), 40); // MUCH faster vanish
 }
 
-setInterval(spawnTrail, 120);
+setInterval(spawnTrail, 80);
 
-/* HOVER DETECTION */
+/* HOVER */
 catTier.addEventListener("mouseenter", () => hovering = true);
 catTier.addEventListener("mouseleave", () => hovering = false);
 
