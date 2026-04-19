@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Difficulty Chart</title>
+<title>Main Page</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
 
@@ -10,352 +10,100 @@
 body {
   margin: 0;
   background: #0f0f14;
+  color: white;
+  font-family: 'Overpass', sans-serif;
   display: flex;
   justify-content: center;
-  padding: 20px;
-  font-family: 'Overpass', sans-serif;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.chart {
-  width: 240px;
-  display: flex;
-  flex-direction: column;
+.container {
+  width: 420px;
+  text-align: center;
 }
 
-.tier {
-  height: 70px;
-  position: relative;
-  cursor: pointer;
-  overflow: visible;
-  transition: transform 0.15s ease;
-}
-
-.tier:hover {
-  transform: scale(1.03);
-  z-index: 5;
-}
-
-
-.tooltip {
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translate(0,-50%);
-  opacity: 0;
-  color: white;
-  padding: 6px 10px;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: transform 0.25s ease, opacity 0.2s ease;
-  background: transparent;
-  text-shadow: 0 0 6px rgba(0,0,0,0.85);
-  font-weight: 600;
-}
-
-.tier:hover .tooltip {
-  opacity: 1;
-  transform: translate(-120%, -50%);
-}
-
-
-
-.intense {
-  animation: microShake 0.22s infinite;
-}
-
-.severe {
-  animation: microShake 0.18s infinite, softPulse 0.8s infinite;
-}
-
-.remorseless {
-  animation: driftScale 1.6s infinite linear;
-}
-
-.vigorous {
-  animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite;
-}
-
-.savage {
-  animation: warp 0.7s infinite alternate;
-}
-
-.insane {
-  animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite;
-}
-
-.extreme {
-  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite;
-}
-
-.absurd {
-  animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite;
-}
-
-
-.terrifying {
-  animation:
-    terrorStutter 0.9s infinite steps(1),
-    collapseFlicker 0.18s infinite;
-  transform-origin: center;
+h1 {
+  margin-bottom: 20px;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
-
-.cataclysmic {
-  animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
-  font-weight: 800;
+.link-box {
+  background: #1a1a22;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
 }
 
-
-.catastrophic {
-  font-weight: 900;
-  animation: realityBreak 0.18s infinite;
-  text-shadow: 0 0 10px rgba(255,255,255,0.85);
+.link-box:hover {
+  transform: scale(1.03);
+  background: #22222c;
 }
 
-
-.eternal {
-  animation:
-    cosmicDrift 8s infinite linear,
-    cosmicGlow 3s infinite ease-in-out,
-    cosmicHue 12s infinite linear;
-  position: relative;
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.eternal::after {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(circle, rgba(120,200,255,0.25), transparent 60%);
-  z-index: -1;
+details {
+  background: #1a1a22;
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: left;
 }
 
-
-
-@keyframes microShake {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(1px,-1px); }
-  100% { transform: translate(0,0); }
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  outline: none;
 }
 
-@keyframes softPulse {
-  0%,100% { filter: brightness(1); }
-  50% { filter: brightness(1.4); }
+.links {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-@keyframes driftScale {
-  0% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(2px,-2px) scale(1.06); }
-  100% { transform: translate(0,0) scale(1); }
+.links a {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #111118;
+  transition: background 0.15s ease;
 }
 
-@keyframes rotateWobble {
-  0%,100% { transform: rotate(0deg); }
-  50% { transform: rotate(10deg); }
-}
-
-@keyframes warp {
-  0% { transform: skewX(0deg) scale(1); }
-  100% { transform: skewX(12deg) scale(1.08); }
-}
-
-@keyframes glitchBurst {
-  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-  50% { text-shadow: -3px 0 red, 3px 0 cyan; }
-  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
-}
-
-@keyframes phaseShift {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(120deg); }
-  100% { filter: hue-rotate(0deg); }
-}
-
-@keyframes dimensionalStretch {
-  0%,100% { transform: scale(1,1) skewX(0deg); }
-  50% { transform: scale(1.25,0.7) skewX(10deg); }
-}
-
-@keyframes collapseFlicker {
-  0% { opacity: 1; transform: scale(1); }
-  25% { opacity: 0.3; }
-  50% { opacity: 1; transform: scale(0.85); }
-  75% { opacity: 0.2; }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-
-@keyframes terrorStutter {
-  0%   { transform: translate(0,0) scale(1); }
-  10%  { transform: translate(1px,-1px) scale(1.02); }
-  20%  { transform: translate(-2px,1px) scale(0.98); }
-  30%  { transform: translate(0,0) scale(1); }
-  40%  { transform: translate(2px,2px) scale(1.01); }
-  50%  { transform: translate(-1px,-2px) scale(0.99); }
-  60%  { transform: translate(0,0) scale(1); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-
-@keyframes structuralCollapse {
-  0% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
-  25% { transform: translate(2px,-1px) scale(1.02); letter-spacing: 1px; }
-  50% { transform: translate(-2px,1px) scale(0.98); letter-spacing: -1px; }
-  75% { transform: translate(1px,2px) scale(1.03); letter-spacing: 0.5px; }
-  100% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
-}
-
-@keyframes realityBreak {
-  0% { transform: translate(0,0) scale(1); }
-  20% { transform: translate(2px,-1px) scale(1.02); }
-  40% { transform: translate(-2px,2px) scale(0.98); }
-  60% { transform: translate(1px,1px) scale(1.03); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-
-@keyframes cosmicDrift {
-  0% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(3px,-3px) scale(1.05); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-@keyframes cosmicGlow {
-  0%,100% { text-shadow: 0 0 5px #fff, 0 0 10px #6cf; }
-  50% { text-shadow: 0 0 20px #fff, 0 0 40px #6cf, 0 0 60px #f0f; }
-}
-
-@keyframes cosmicHue {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-
-.trail {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0.85;
-  z-index: 999;
+.links a:hover {
+  background: #2a2a36;
 }
 </style>
 </head>
 
 <body>
 
-<div class="chart">
+<div class="container">
 
+  <h1>Parkour Hub</h1>
 
-<div class="tier" style="background:#208217;" onclick="location.href='effortless.html'">
-  <div class="tooltip">Effortless</div>
-</div>
-<div class="tier" style="background:#649f1d;" onclick="location.href='cakewalk.html'">
-  <div class="tooltip">Cakewalk</div>
-</div>
-<div class="tier" style="background:#91b91b;" onclick="location.href='simple.html'">
-  <div class="tooltip">Simple</div>
-</div>
-<div class="tier" style="background:#b3cd22;" onclick="location.href='easy.html'">
-  <div class="tooltip">Easy</div>
-</div>
-<div class="tier" style="background:#d9d81c;" onclick="location.href='moderate.html'">
-  <div class="tooltip">Moderate</div>
-</div>
-<div class="tier" style="background:#d9ba1c;" onclick="location.href='medium.html'">
-  <div class="tooltip">Medium</div>
-</div>
-<div class="tier" style="background:#d99a1d;" onclick="location.href='advanced.html'">
-  <div class="tooltip">Advanced</div>
-</div>
-<div class="tier" style="background:#d9861c;" onclick="location.href='challenging.html'">
-  <div class="tooltip">Challenging</div>
-</div>
-<div class="tier" style="background:#d8691d;" onclick="location.href='difficult.html'">
-  <div class="tooltip">Difficult</div>
-</div>
-<div class="tier" style="background:#f13d01;" onclick="location.href='hard.html'">
-  <div class="tooltip">Hard</div>
-</div>
+  <!-- Link to your difficulty chart subpage -->
+  <div class="link-box" onclick="location.href='chart.html'">
+    <a href="chart.html">Difficulty Chart</a>
+  </div>
 
+  <!-- Collapsible parkour list -->
+  <details>
+    <summary>Parkour Pages</summary>
+    <div class="links">
 
-<div class="tier" style="background:#a30800;" onclick="location.href='intense.html'">
-  <div class="tooltip"><span class="intense">Intense</span></div>
-</div>
-<div class="tier" style="background:#3d0301;" onclick="location.href='severe.html'">
-  <div class="tooltip"><span class="severe">Severe</span></div>
-</div>
-<div class="tier" style="background:#fe01d3;" onclick="location.href='remorseless.html'">
-  <div class="tooltip"><span class="remorseless">Remorseless</span></div>
-</div>
-<div class="tier" style="background:#8b0097;" onclick="location.href='vigorous.html'">
-  <div class="tooltip"><span class="vigorous">Vigorous</span></div>
-</div>
-<div class="tier" style="background:#3e0052;" onclick="location.href='savage.html'">
-  <div class="tooltip"><span class="savage">Savage</span></div>
-</div>
-<div class="tier" style="background:#2734ff;" onclick="location.href='insane.html'">
-  <div class="tooltip"><span class="insane">Insane</span></div>
-</div>
-<div class="tier" style="background:#2888ff;" onclick="location.href='extreme.html'">
-  <div class="tooltip"><span class="extreme">Extreme</span></div>
-</div>
-<div class="tier" style="background:#00ff99;" onclick="location.href='absurd.html'">
-  <div class="tooltip"><span class="absurd">Absurd</span></div>
-</div>
-<div class="tier" style="background:#28fdff;" onclick="location.href='terrifying.html'">
-  <div class="tooltip"><span class="terrifying">Terrifying</span></div>
-</div>
+      <a href="floatforceparkour.html">Float Force Parkour, by a palyer</a>
 
-
-<div class="tier" style="background:#ffffff;" onclick="location.href='catastrophic.html'" id="catTier">
-  <div class="tooltip"><span class="catastrophic" id="catLabel">Catastrophic</span></div>
-</div>
-
-<div class="tier" style="background:#464646;" onclick="location.href='cataclysmic.html'">
-  <div class="tooltip"><span class="cataclysmic">Cataclysmic</span></div>
-</div>
-
-<div class="tier" style="background:#000000;" onclick="location.href='eternal.html'">
-  <div class="tooltip"><span class="eternal">Eternal</span></div>
-</div>
+    </div>
+  </details>
 
 </div>
-
-<script>
-const cat = document.getElementById("catLabel");
-const catTier = document.getElementById("catTier");
-
-let catX = 0, catY = 0, t = 0, hovering = false;
-
-function shake() {
-  t += 0.22;
-  catX = Math.sin(t*2)*4;
-  catY = Math.cos(t*1.8)*4;
-  cat.style.transform = `translate(${catX}px, ${catY}px)`;
-}
-setInterval(shake, 16);
-
-function trail() {
-  if (!hovering) return;
-
-  const rect = cat.getBoundingClientRect();
-  const ghost = document.createElement("span");
-  ghost.className = "trail";
-  ghost.innerText = "Catastrophic";
-
-  ghost.style.left = rect.left + "px";
-  ghost.style.top = rect.top + "px";
-  ghost.style.transform = `translate(${catX}px, ${catY}px)`;
-  ghost.style.color = `hsl(${Math.random()*360},100%,75%)`;
-
-  document.body.appendChild(ghost);
-  setTimeout(()=>ghost.remove(), 40);
-}
-setInterval(trail, 80);
-
-catTier.addEventListener("mouseenter", ()=>hovering=true);
-catTier.addEventListener("mouseleave", ()=>hovering=false);
-</script>
 
 </body>
 </html>
