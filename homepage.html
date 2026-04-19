@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Main Page</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #0f0f14;
+  color: white;
+  font-family: 'Overpass', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 420px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.link-box {
+  background: #1a1a22;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.link-box:hover {
+  transform: scale(1.03);
+  background: #22222c;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+details {
+  background: #1a1a22;
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  outline: none;
+}
+
+.links {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.links a {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #111118;
+  transition: background 0.15s ease;
+}
+
+.links a:hover {
+  background: #2a2a36;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Parkour Hub</h1>
+
+  <!-- Link to your difficulty chart subpage -->
+  <div class="link-box" onclick="location.href='chart.html'">
+    <a href="index.html">Enter Difficulty Chart</a>
+  </div>
+
+  <details>
+    <summary>Parkour Pages</summary>
+    <div class="links">
+
+      <a href="float_force_parkour.html">Float Force Parkour, by a palyer</a>
+
+    </div>
+  </details>
+
+</div>
+
+</body>
+</html>
