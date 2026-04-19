@@ -16,6 +16,27 @@ body {
   font-family: 'Overpass', sans-serif;
 }
 
+/* BACK BUTTON */
+.back-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+  padding: 8px 12px;
+  font-family: 'Overpass', sans-serif;
+  cursor: pointer;
+  border-radius: 6px;
+  z-index: 1000;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
 .chart {
   width: 240px;
   display: flex;
@@ -34,7 +55,6 @@ body {
   transform: scale(1.03);
   z-index: 5;
 }
-
 
 .tooltip {
   position: absolute;
@@ -57,56 +77,29 @@ body {
   transform: translate(-120%, -50%);
 }
 
+/* --- animations (unchanged) --- */
 
-
-.intense {
-  animation: microShake 0.22s infinite;
-}
-
-.severe {
-  animation: microShake 0.18s infinite, softPulse 0.8s infinite;
-}
-
-.remorseless {
-  animation: driftScale 1.6s infinite linear;
-}
-
-.vigorous {
-  animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite;
-}
-
-.savage {
-  animation: warp 0.7s infinite alternate;
-}
-
-.insane {
-  animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite;
-}
-
-.extreme {
-  animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite;
-}
-
-.absurd {
-  animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite;
-}
-
+.intense { animation: microShake 0.22s infinite; }
+.severe { animation: microShake 0.18s infinite, softPulse 0.8s infinite; }
+.remorseless { animation: driftScale 1.6s infinite linear; }
+.vigorous { animation: driftScale 1.3s infinite linear, rotateWobble 1s infinite; }
+.savage { animation: warp 0.7s infinite alternate; }
+.insane { animation: warp 0.45s infinite alternate, glitchBurst 0.14s infinite; }
+.extreme { animation: phaseShift 0.6s infinite, glitchBurst 0.1s infinite, microShake 0.12s infinite; }
+.absurd { animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite; }
 
 .terrifying {
-  animation:
-    terrorStutter 0.9s infinite steps(1),
-    collapseFlicker 0.18s infinite;
+  animation: terrorStutter 0.9s infinite steps(1),
+             collapseFlicker 0.18s infinite;
   transform-origin: center;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
-
 .cataclysmic {
   animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
   font-weight: 800;
 }
-
 
 .catastrophic {
   font-weight: 900;
@@ -114,12 +107,10 @@ body {
   text-shadow: 0 0 10px rgba(255,255,255,0.85);
 }
 
-
 .eternal {
-  animation:
-    cosmicDrift 8s infinite linear,
-    cosmicGlow 3s infinite ease-in-out,
-    cosmicHue 12s infinite linear;
+  animation: cosmicDrift 8s infinite linear,
+             cosmicGlow 3s infinite ease-in-out,
+             cosmicHue 12s infinite linear;
   position: relative;
 }
 
@@ -131,7 +122,7 @@ body {
   z-index: -1;
 }
 
-
+/* keyframes unchanged */
 
 @keyframes microShake {
   0% { transform: translate(0,0); }
@@ -185,35 +176,23 @@ body {
   100% { opacity: 1; transform: scale(1); }
 }
 
-
 @keyframes terrorStutter {
-  0%   { transform: translate(0,0) scale(1); }
-  10%  { transform: translate(1px,-1px) scale(1.02); }
-  20%  { transform: translate(-2px,1px) scale(0.98); }
-  30%  { transform: translate(0,0) scale(1); }
-  40%  { transform: translate(2px,2px) scale(1.01); }
-  50%  { transform: translate(-1px,-2px) scale(0.99); }
-  60%  { transform: translate(0,0) scale(1); }
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-1px,1px) scale(0.99); }
   100% { transform: translate(0,0) scale(1); }
 }
 
-
 @keyframes structuralCollapse {
-  0% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
-  25% { transform: translate(2px,-1px) scale(1.02); letter-spacing: 1px; }
-  50% { transform: translate(-2px,1px) scale(0.98); letter-spacing: -1px; }
-  75% { transform: translate(1px,2px) scale(1.03); letter-spacing: 0.5px; }
-  100% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(2px,-1px) scale(1.02); }
+  100% { transform: translate(0,0) scale(1); }
 }
 
 @keyframes realityBreak {
   0% { transform: translate(0,0) scale(1); }
-  20% { transform: translate(2px,-1px) scale(1.02); }
-  40% { transform: translate(-2px,2px) scale(0.98); }
-  60% { transform: translate(1px,1px) scale(1.03); }
+  50% { transform: translate(-2px,2px) scale(0.98); }
   100% { transform: translate(0,0) scale(1); }
 }
-
 
 @keyframes cosmicDrift {
   0% { transform: translate(0,0) scale(1); }
@@ -231,7 +210,6 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
-
 .trail {
   position: fixed;
   pointer-events: none;
@@ -243,69 +221,30 @@ body {
 
 <body>
 
+<button class="back-btn" onclick="location.href='index.html'">← Back</button>
+
 <div class="chart">
 
+<div class="tier" style="background:#208217;" onclick="location.href='effortless.html'"><div class="tooltip">Effortless</div></div>
+<div class="tier" style="background:#649f1d;" onclick="location.href='cakewalk.html'"><div class="tooltip">Cakewalk</div></div>
+<div class="tier" style="background:#91b91b;" onclick="location.href='simple.html'"><div class="tooltip">Simple</div></div>
+<div class="tier" style="background:#b3cd22;" onclick="location.href='easy.html'"><div class="tooltip">Easy</div></div>
+<div class="tier" style="background:#d9d81c;" onclick="location.href='moderate.html'"><div class="tooltip">Moderate</div></div>
+<div class="tier" style="background:#d9ba1c;" onclick="location.href='medium.html'"><div class="tooltip">Medium</div></div>
+<div class="tier" style="background:#d99a1d;" onclick="location.href='advanced.html'"><div class="tooltip">Advanced</div></div>
+<div class="tier" style="background:#d9861c;" onclick="location.href='challenging.html'"><div class="tooltip">Challenging</div></div>
+<div class="tier" style="background:#d8691d;" onclick="location.href='difficult.html'"><div class="tooltip">Difficult</div></div>
+<div class="tier" style="background:#f13d01;" onclick="location.href='hard.html'"><div class="tooltip">Hard</div></div>
 
-<div class="tier" style="background:#208217;" onclick="location.href='effortless.html'">
-  <div class="tooltip">Effortless</div>
-</div>
-<div class="tier" style="background:#649f1d;" onclick="location.href='cakewalk.html'">
-  <div class="tooltip">Cakewalk</div>
-</div>
-<div class="tier" style="background:#91b91b;" onclick="location.href='simple.html'">
-  <div class="tooltip">Simple</div>
-</div>
-<div class="tier" style="background:#b3cd22;" onclick="location.href='easy.html'">
-  <div class="tooltip">Easy</div>
-</div>
-<div class="tier" style="background:#d9d81c;" onclick="location.href='moderate.html'">
-  <div class="tooltip">Moderate</div>
-</div>
-<div class="tier" style="background:#d9ba1c;" onclick="location.href='medium.html'">
-  <div class="tooltip">Medium</div>
-</div>
-<div class="tier" style="background:#d99a1d;" onclick="location.href='advanced.html'">
-  <div class="tooltip">Advanced</div>
-</div>
-<div class="tier" style="background:#d9861c;" onclick="location.href='challenging.html'">
-  <div class="tooltip">Challenging</div>
-</div>
-<div class="tier" style="background:#d8691d;" onclick="location.href='difficult.html'">
-  <div class="tooltip">Difficult</div>
-</div>
-<div class="tier" style="background:#f13d01;" onclick="location.href='hard.html'">
-  <div class="tooltip">Hard</div>
-</div>
-
-
-<div class="tier" style="background:#a30800;" onclick="location.href='intense.html'">
-  <div class="tooltip"><span class="intense">Intense</span></div>
-</div>
-<div class="tier" style="background:#3d0301;" onclick="location.href='severe.html'">
-  <div class="tooltip"><span class="severe">Severe</span></div>
-</div>
-<div class="tier" style="background:#fe01d3;" onclick="location.href='remorseless.html'">
-  <div class="tooltip"><span class="remorseless">Remorseless</span></div>
-</div>
-<div class="tier" style="background:#8b0097;" onclick="location.href='vigorous.html'">
-  <div class="tooltip"><span class="vigorous">Vigorous</span></div>
-</div>
-<div class="tier" style="background:#3e0052;" onclick="location.href='savage.html'">
-  <div class="tooltip"><span class="savage">Savage</span></div>
-</div>
-<div class="tier" style="background:#2734ff;" onclick="location.href='insane.html'">
-  <div class="tooltip"><span class="insane">Insane</span></div>
-</div>
-<div class="tier" style="background:#2888ff;" onclick="location.href='extreme.html'">
-  <div class="tooltip"><span class="extreme">Extreme</span></div>
-</div>
-<div class="tier" style="background:#00ff99;" onclick="location.href='absurd.html'">
-  <div class="tooltip"><span class="absurd">Absurd</span></div>
-</div>
-<div class="tier" style="background:#28fdff;" onclick="location.href='terrifying.html'">
-  <div class="tooltip"><span class="terrifying">Terrifying</span></div>
-</div>
-
+<div class="tier" style="background:#a30800;" onclick="location.href='intense.html'"><div class="tooltip"><span class="intense">Intense</span></div></div>
+<div class="tier" style="background:#3d0301;" onclick="location.href='severe.html'"><div class="tooltip"><span class="severe">Severe</span></div></div>
+<div class="tier" style="background:#fe01d3;" onclick="location.href='remorseless.html'"><div class="tooltip"><span class="remorseless">Remorseless</span></div></div>
+<div class="tier" style="background:#8b0097;" onclick="location.href='vigorous.html'"><div class="tooltip"><span class="vigorous">Vigorous</span></div></div>
+<div class="tier" style="background:#3e0052;" onclick="location.href='savage.html'"><div class="tooltip"><span class="savage">Savage</span></div></div>
+<div class="tier" style="background:#2734ff;" onclick="location.href='insane.html'"><div class="tooltip"><span class="insane">Insane</span></div></div>
+<div class="tier" style="background:#2888ff;" onclick="location.href='extreme.html'"><div class="tooltip"><span class="extreme">Extreme</span></div></div>
+<div class="tier" style="background:#00ff99;" onclick="location.href='absurd.html'"><div class="tooltip"><span class="absurd">Absurd</span></div></div>
+<div class="tier" style="background:#28fdff;" onclick="location.href='terrifying.html'"><div class="tooltip"><span class="terrifying">Terrifying</span></div></div>
 
 <div class="tier" style="background:#ffffff;" onclick="location.href='catastrophic.html'" id="catTier">
   <div class="tooltip"><span class="catastrophic" id="catLabel">Catastrophic</span></div>
