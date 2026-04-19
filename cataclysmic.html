@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cataclysmic</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:#000;
+  overflow:hidden;
+}
+
+/* 🌋 collapsing world */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 40%),
+    radial-gradient(circle at 30% 70%, rgba(255,0,100,0.35), transparent 60%),
+    radial-gradient(circle at 70% 30%, rgba(255,150,0,0.25), transparent 60%);
+  filter:blur(25px) contrast(160%);
+  animation:
+    collapse 0.4s infinite alternate,
+    hue 1.5s infinite linear;
+  z-index:-3;
+}
+
+@keyframes collapse {
+  0% { transform:scale(1) translate(0,0); }
+  50% { transform:scale(1.08) translate(-20px,10px); }
+  100% { transform:scale(0.95) translate(15px,-15px); }
+}
+
+@keyframes hue {
+  0%{filter:blur(25px) hue-rotate(0deg)}
+  100%{filter:blur(25px) hue-rotate(360deg)}
+}
+
+/* 💀 violent glitch layers */
+.glitch {
+  position:relative;
+}
+
+.glitch::before {
+  content:attr(data-text);
+  position:absolute;
+  left:2px;
+  top:0;
+  color:red;
+  animation:glitch1 0.08s infinite;
+}
+
+.glitch::after {
+  content:attr(data-text);
+  position:absolute;
+  left:-2px;
+  top:0;
+  color:cyan;
+  animation:glitch2 0.1s infinite;
+}
+
+@keyframes glitch1 {
+  0%{transform:translate(2px,-1px)}
+  50%{transform:translate(-4px,2px)}
+  100%{transform:translate(3px,-2px)}
+}
+
+@keyframes glitch2 {
+  0%{transform:translate(-2px,1px)}
+  50%{transform:translate(4px,-3px)}
+  100%{transform:translate(-3px,2px)}
+}
+
+/* ⚠️ unstable UI */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:60px 30px;
+  transform:rotate(-0.4deg);
+}
+
+.card {
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:30px;
+  animation:cardWarp 0.15s infinite;
+}
+
+@keyframes cardWarp {
+  0%{transform:translate(0,0)}
+  25%{transform:translate(3px,-2px)}
+  50%{transform:translate(-3px,2px)}
+  75%{transform:translate(2px,3px)}
+}
+
+a { color:rgba(255,255,255,0.6); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,0,100,0.35);
+  display:inline-block;
+}
+
+/* flicker storm */
+.flash {
+  position:fixed;
+  inset:0;
+  background:white;
+  opacity:0.03;
+  animation:flick 0.12s infinite;
+  pointer-events:none;
+}
+
+@keyframes flick {
+  0%,100%{opacity:0.03}
+  50%{opacity:0.1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="flash"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1 class="glitch" data-text="Cataclysmic">Cataclysmic</h1>
+<div class="tag">Tier: 5 (Borderline)</div>
+
+<p>Complete environmental destabilization. The system struggles to maintain coherence.</p>
+
+<ul><li>Parkour 21</li></ul>
+
+</div>
+</div>
+
+</body>
+</html>

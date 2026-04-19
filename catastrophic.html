@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Catastrophic</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:#000;
+  overflow:hidden;
+  animation:shake 0.08s infinite;
+}
+
+/* 🌐 broken reality field */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,0,0,0.35), transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(0,0,255,0.25), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, transparent 3px);
+  filter:blur(20px) contrast(140%);
+  animation:
+    chaosMove 0.6s infinite alternate,
+    hue 2s infinite linear;
+  z-index:-3;
+}
+
+@keyframes chaosMove {
+  0% { transform:translate(0,0) scale(1); }
+  50% { transform:translate(-20px,10px) scale(1.05); }
+  100% { transform:translate(10px,-15px) scale(0.98); }
+}
+
+@keyframes hue {
+  0% { filter:blur(20px) hue-rotate(0deg); }
+  100% { filter:blur(20px) hue-rotate(360deg); }
+}
+
+/* 💀 glitch text split */
+.glitch {
+  position:relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+}
+
+.glitch::before {
+  color:red;
+  transform:translate(3px,-2px);
+  animation:glitchA 0.1s infinite;
+}
+
+.glitch::after {
+  color:cyan;
+  transform:translate(-3px,2px);
+  animation:glitchB 0.12s infinite;
+}
+
+@keyframes glitchA {
+  0%{transform:translate(2px,-1px)}
+  50%{transform:translate(-3px,2px)}
+  100%{transform:translate(3px,-2px)}
+}
+
+@keyframes glitchB {
+  0%{transform:translate(-2px,1px)}
+  50%{transform:translate(4px,-3px)}
+  100%{transform:translate(-4px,3px)}
+}
+
+/* ⚠️ layout instability */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:60px 30px;
+  transform:rotate(0.3deg);
+}
+
+.card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter:blur(8px);
+  animation:cardShake 0.12s infinite;
+}
+
+@keyframes cardShake {
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2px,-2px)}
+  50%{transform:translate(-2px,2px)}
+  75%{transform:translate(1px,1px)}
+}
+
+/* 🌑 flicker overlay */
+.flash {
+  position:fixed;
+  inset:0;
+  background:white;
+  opacity:0.02;
+  animation:flash 0.3s infinite;
+  pointer-events:none;
+}
+
+@keyframes flash {
+  0%,100%{opacity:0.02}
+  50%{opacity:0.08}
+}
+
+a { color:rgba(255,255,255,0.6); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,0,0,0.3);
+  display:inline-block;
+}
+
+/* overall micro-shake */
+@keyframes shake {
+  0%{transform:translate(0,0)}
+  50%{transform:translate(1px,-1px)}
+  100%{transform:translate(0,0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="flash"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1 class="glitch" data-text="Catastrophic">Catastrophic</h1>
+<div class="tag">Tier: 5 (Borderline)</div>
+
+<p>System instability reaches critical levels. Structure is no longer reliable.</p>
+
+<ul><li>Parkour 20</li></ul>
+
+</div>
+</div>
+
+</body>
+</html>
