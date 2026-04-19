@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Extreme</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:#050505;
+  overflow:hidden;
+}
+
+/* 🔥 CHAOTIC BACKGROUND */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle, rgba(0,180,255,0.4), transparent 60%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.1) 0px,
+      transparent 2px
+    );
+  animation:
+    warp 1.2s infinite alternate,
+    hue 4s infinite linear;
+  filter: blur(12px);
+  z-index:-3;
+}
+
+@keyframes warp {
+  0% { transform: scale(1) skewX(0deg); }
+  100% { transform: scale(1.2) skewX(10deg); }
+}
+
+@keyframes hue {
+  0% { filter:hue-rotate(0deg) blur(12px); }
+  100% { filter:hue-rotate(360deg) blur(12px); }
+}
+
+/* ⚠️ HEAVIER GLITCH */
+.glitch {
+  position:relative;
+  animation: jitter 0.1s infinite;
+}
+
+@keyframes jitter {
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2px,-2px)}
+  50%{transform:translate(-2px,2px)}
+  75%{transform:translate(3px,1px)}
+}
+
+/* RGB split */
+.glitch::before,
+.glitch::after {
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+.glitch::before {
+  color:#00ffff;
+  transform:translate(3px,0);
+  opacity:0.7;
+}
+
+.glitch::after {
+  color:#ff00ff;
+  transform:translate(-3px,0);
+  opacity:0.7;
+}
+
+/* scanlines stronger */
+.scanlines {
+  position:fixed;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.06) 0px,
+      transparent 2px
+    );
+  pointer-events:none;
+  animation:flicker 0.08s infinite;
+}
+
+@keyframes flicker {
+  0%,100%{opacity:0.6}
+  50%{opacity:0.2}
+}
+
+/* layout */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:60px 30px;
+}
+
+.card {
+  background:rgba(0,80,120,0.25);
+  border:1px solid rgba(0,200,255,0.4);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter:blur(12px);
+}
+
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(0,200,255,0.4);
+  display:inline-block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="scanlines"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1 class="glitch" data-text="Extreme">Extreme</h1>
+<div class="tag">Tier: 4 (Skyline)</div>
+
+<p>Severe distortion. Visual stability collapses under pressure.</p>
+
+<ul><li>Parkour 17</li></ul>
+
+</div>
+</div>
+
+</body>
+</html>

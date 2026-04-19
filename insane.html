@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insane</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:#05070f;
+  overflow:hidden;
+}
+
+/* 🌌 MAIN GLITCH BACKGROUND */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,120,255,0.35), transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,150,255,0.12) 0px,
+      transparent 3px
+    );
+  animation:
+    drift 6s infinite linear,
+    hueShift 8s infinite linear;
+  filter: blur(14px);
+  z-index:-3;
+}
+
+@keyframes drift {
+  0% { transform:translate(0,0) }
+  100% { transform:translate(-60px,-60px) }
+}
+
+@keyframes hueShift {
+  0% { filter:hue-rotate(0deg) blur(14px); }
+  100% { filter:hue-rotate(360deg) blur(14px); }
+}
+
+/* ⚡ GLITCH OVERLAY */
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  overflow:hidden;
+}
+
+.glitch::before {
+  color: #00ccff;
+  z-index:-1;
+  animation: glitchTop 0.15s infinite linear alternate;
+}
+
+.glitch::after {
+  color: #0033ff;
+  z-index:-2;
+  animation: glitchBot 0.2s infinite linear alternate;
+}
+
+@keyframes glitchTop {
+  0% { transform: translate(2px,-2px); }
+  100% { transform: translate(-2px,2px); }
+}
+
+@keyframes glitchBot {
+  0% { transform: translate(-3px,1px); }
+  100% { transform: translate(3px,-1px); }
+}
+
+/* 📺 scanlines */
+.scanlines {
+  position:fixed;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.04) 0px,
+      transparent 2px
+    );
+  pointer-events:none;
+  z-index:5;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0%,100% { opacity:0.5 }
+  50% { opacity:0.2 }
+}
+
+/* layout */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:60px 30px;
+  position:relative;
+}
+
+.card {
+  background:rgba(0,40,90,0.25);
+  border:1px solid rgba(0,120,255,0.4);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter: blur(12px);
+  box-shadow:0 0 40px rgba(0,120,255,0.3);
+}
+
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(0,120,255,0.4);
+  display:inline-block;
+}
+
+/* subtle screen shake */
+@keyframes screenShake {
+  0%{transform:translate(0,0)}
+  50%{transform:translate(1px,-1px)}
+  100%{transform:translate(0,0)}
+}
+
+body {
+  animation: screenShake 0.2s infinite;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="scanlines"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1 class="glitch" data-text="Insane">Insane</h1>
+<div class="tag">Tier: 4 (Skyline)</div>
+
+<p>Reality destabilizes. Visual and mechanical clarity begin to break down.</p>
+
+<ul><li>Parkour 16</li></ul>
+
+</div>
+</div>
+
+</body>
+</html>
