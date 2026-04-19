@@ -15,114 +15,105 @@ body {
   overflow:hidden;
 }
 
-/* 🌋 collapsing world */
+/* 🏚 broken grayscale world */
 .bg {
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 40%),
-    radial-gradient(circle at 30% 70%, rgba(255,0,100,0.35), transparent 60%),
-    radial-gradient(circle at 70% 30%, rgba(255,150,0,0.25), transparent 60%);
-  filter:blur(25px) contrast(160%);
+    radial-gradient(circle at 50% 40%, rgba(255,255,255,0.08), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0px, transparent 4px);
+  filter: grayscale(1) contrast(200%) brightness(0.6);
   animation:
-    collapse 0.4s infinite alternate,
-    hue 1.5s infinite linear;
+    collapse 0.6s infinite alternate,
+    tremor 0.2s infinite;
   z-index:-3;
 }
 
 @keyframes collapse {
-  0% { transform:scale(1) translate(0,0); }
-  50% { transform:scale(1.08) translate(-20px,10px); }
-  100% { transform:scale(0.95) translate(15px,-15px); }
+  0%{transform:scale(1) translate(0,0)}
+  50%{transform:scale(1.05) translate(-10px,5px)}
+  100%{transform:scale(0.98) translate(10px,-5px)}
 }
 
-@keyframes hue {
-  0%{filter:blur(25px) hue-rotate(0deg)}
-  100%{filter:blur(25px) hue-rotate(360deg)}
+@keyframes tremor {
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2px,-1px)}
+  50%{transform:translate(-2px,1px)}
+  75%{transform:translate(1px,2px)}
 }
 
-/* 💀 violent glitch layers */
+/* ☠ heavy glitch desaturation */
 .glitch {
   position:relative;
 }
 
-.glitch::before {
-  content:attr(data-text);
-  position:absolute;
-  left:2px;
-  top:0;
-  color:red;
-  animation:glitch1 0.08s infinite;
-}
-
+.glitch::before,
 .glitch::after {
   content:attr(data-text);
   position:absolute;
-  left:-2px;
+  left:0;
   top:0;
-  color:cyan;
-  animation:glitch2 0.1s infinite;
+  opacity:0.6;
 }
 
-@keyframes glitch1 {
-  0%{transform:translate(2px,-1px)}
-  50%{transform:translate(-4px,2px)}
-  100%{transform:translate(3px,-2px)}
+.glitch::before {
+  color:#bbb;
+  transform:translate(2px,0);
 }
 
-@keyframes glitch2 {
-  0%{transform:translate(-2px,1px)}
-  50%{transform:translate(4px,-3px)}
-  100%{transform:translate(-3px,2px)}
+.glitch::after {
+  color:#777;
+  transform:translate(-2px,0);
 }
 
-/* ⚠️ unstable UI */
+/* 🪨 collapsing UI */
 .container {
   max-width:700px;
   margin:auto;
   padding:60px 30px;
   transform:rotate(-0.4deg);
+  filter:grayscale(1);
 }
 
 .card {
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
   border-radius:18px;
   padding:30px;
-  animation:cardWarp 0.15s infinite;
+  backdrop-filter:blur(6px);
+  animation:break 0.3s infinite;
 }
 
-@keyframes cardWarp {
+@keyframes break {
   0%{transform:translate(0,0)}
-  25%{transform:translate(3px,-2px)}
-  50%{transform:translate(-3px,2px)}
-  75%{transform:translate(2px,3px)}
+  50%{transform:translate(3px,-2px)}
+  100%{transform:translate(-3px,2px)}
 }
 
-a { color:rgba(255,255,255,0.6); text-decoration:none }
+a { color:rgba(255,255,255,0.5); text-decoration:none }
 a:hover { color:white }
 
 .tag {
   margin-top:10px;
   padding:6px 12px;
   border-radius:999px;
-  background:rgba(255,0,100,0.35);
+  background:rgba(255,255,255,0.1);
   display:inline-block;
 }
 
-/* flicker storm */
+/* dim flicker */
 .flash {
   position:fixed;
   inset:0;
   background:white;
   opacity:0.03;
-  animation:flick 0.12s infinite;
+  animation:flicker 0.4s infinite;
   pointer-events:none;
 }
 
-@keyframes flick {
-  0%,100%{opacity:0.03}
-  50%{opacity:0.1}
+@keyframes flicker {
+  0%,100%{opacity:0.02}
+  50%{opacity:0.06}
 }
 </style>
 </head>
@@ -140,9 +131,9 @@ a:hover { color:white }
 <h1 class="glitch" data-text="Cataclysmic">Cataclysmic</h1>
 <div class="tag">Tier: 5 (Borderline)</div>
 
-<p>Complete environmental destabilization. The system struggles to maintain coherence.</p>
+<p>Structural collapse. The world loses color, clarity, and coherence.</p>
 
-<ul><li>Parkour 21</li></ul>
+<ul><li>Parkour 23</li></ul>
 
 </div>
 </div>
