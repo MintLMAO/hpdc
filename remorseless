@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Remorseless</title>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; font-family:'Overpass'; color:white; background:#0f0f14; overflow:hidden; }
+
+.bg {
+  position:fixed; inset:0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,0,200,0.18) 0px, transparent 6px);
+  animation:drift 1.2s infinite linear;
+  filter:blur(12px);
+}
+
+@keyframes drift {
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-40px)}
+}
+
+.container { max-width:700px; margin:auto; padding:60px 30px; }
+.card { background:rgba(255,255,255,0.04); border-radius:18px; padding:30px; backdrop-filter:blur(10px); }
+
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
+
+.tag { margin-top:10px; padding:6px 12px; border-radius:999px; background:rgba(255,0,200,0.35); display:inline-block; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="container">
+<a href="index.html">← Back</a>
+<div class="card">
+<h1>Remorseless</h1>
+<div class="tag">Tier: 3 (Middleline)</div>
+<p>Cold and unforgiving. Mistakes are punished immediately.</p>
+<ul><li>Parkour 13</li></ul>
+</div>
+</div>
+</body>
+</html>

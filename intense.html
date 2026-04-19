@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Intense</title>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body { margin:0; font-family:'Overpass'; color:white; background:#0f0f14; overflow:hidden; }
+
+.bg {
+  position:fixed; inset:0;
+  background: linear-gradient(90deg, rgba(255,0,0,0.2), transparent);
+  animation:slide 0.8s infinite linear;
+  filter:blur(14px);
+}
+
+@keyframes slide {
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50px)}
+}
+
+.container { max-width:700px; margin:auto; padding:60px 30px; }
+.card { background:rgba(255,255,255,0.04); border-radius:18px; padding:30px; backdrop-filter:blur(10px); }
+
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
+
+.tag { margin-top:10px; padding:6px 12px; border-radius:999px; background:rgba(255,0,0,0.3); display:inline-block; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="container">
+<a href="index.html">← Back</a>
+<div class="card">
+<h1>Intense</h1>
+<div class="tag">Tier: 3 (Middleline)</div>
+<p>Constant pressure. No room to relax.</p>
+<ul><li>Parkour 11</li></ul>
+</div>
+</div>
+</body>
+</html>
