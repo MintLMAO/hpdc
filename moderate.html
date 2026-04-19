@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Simple</title>
+<title>Moderate</title>
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -18,14 +18,13 @@ body {
   position:fixed;
   inset:0;
   background:
-    repeating-linear-gradient(0deg, rgba(180,255,100,0.08) 0px, transparent 40px),
-    repeating-linear-gradient(90deg, rgba(200,255,120,0.06) 0px, transparent 40px);
-  animation:gridShift 6s linear infinite;
-  filter:blur(10px);
+    repeating-linear-gradient(45deg, rgba(255,220,120,0.12) 0px, transparent 30px);
+  animation:slide 4s linear infinite;
+  filter:blur(12px);
   z-index:-1;
 }
 
-@keyframes gridShift {
+@keyframes slide {
   0% { transform:translate(0,0) }
   100% { transform:translate(-40px,-40px) }
 }
@@ -46,7 +45,7 @@ a:hover { color:white }
   display:inline-block;
   padding:6px 12px;
   border-radius:999px;
-  background:rgba(180,255,100,0.2);
+  background:rgba(255,220,120,0.25);
 }
 </style>
 </head>
@@ -58,12 +57,12 @@ a:hover { color:white }
 <a href="index.html">← Back</a>
 
 <div class="card">
-<h1>Simple</h1>
-<div class="tag">Tier: 1 (Tutorial)</div>
+<h1>Moderate</h1>
+<div class="tag">Tier: 2</div>
 
-<p>Introduces basic patterns and structure. Requires light awareness.</p>
+<p>Consistent timing and awareness are required.</p>
 
-<ul><li>Parkour 3</li></ul>
+<ul><li>Parkour 5</li></ul>
 </div>
 </div>
 

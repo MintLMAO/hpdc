@@ -3,137 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <title>Cakewalk</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin: 0;
-  font-family: 'Overpass', sans-serif;
-  color: white;
-  overflow: hidden;
-  background: #0f0f14;
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:#0f0f14;
+  overflow:hidden;
 }
 
-/* 🌿 Cakewalk background (easy flowing motion) */
 .bg {
-  position: fixed;
-  inset: 0;
+  position:fixed;
+  inset:0;
   background:
     radial-gradient(circle at 25% 30%, rgba(120,200,80,0.25), transparent 45%),
-    radial-gradient(circle at 75% 70%, rgba(200,255,120,0.18), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(255,255,160,0.1), transparent 60%);
-  filter: blur(18px);
-  animation: drift 7s ease-in-out infinite alternate;
-  z-index: -1;
+    radial-gradient(circle at 75% 70%, rgba(200,255,120,0.18), transparent 50%);
+  filter:blur(18px);
+  animation:drift 7s ease-in-out infinite alternate;
+  z-index:-1;
 }
 
 @keyframes drift {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  50%  { transform: translate(-15px, 10px) scale(1.05); }
-  100% { transform: translate(10px, -10px) scale(1.08); }
+  0% { transform:translate(0,0) }
+  100% { transform:translate(-20px,10px) }
 }
 
-/* layout */
-.container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 60px 30px;
-}
-
-.back {
-  display: inline-block;
-  margin-bottom: 30px;
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.back:hover {
-  color: white;
-  transform: translateX(-4px);
-}
-
-/* content card */
+.container { max-width:700px; margin:auto; padding:60px 30px; }
 .card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 18px;
-  padding: 30px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+  background:rgba(255,255,255,0.04);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter:blur(10px);
 }
 
-h1 {
-  margin: 0;
-  font-size: 42px;
-  letter-spacing: 1px;
-}
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
 
-.sub {
-  margin-top: 8px;
-  opacity: 0.7;
-  font-weight: 500;
-}
-
-/* tag */
 .tag {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(120,200,80,0.25);
-  border: 1px solid rgba(120,200,80,0.5);
-  font-weight: 600;
-  font-size: 13px;
-}
-
-/* sections */
-.section {
-  margin-top: 25px;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-ul {
-  margin-top: 10px;
-  padding-left: 18px;
-}
-
-li {
-  margin-bottom: 6px;
+  margin-top:10px;
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(120,200,80,0.25);
 }
 </style>
 </head>
 
 <body>
-
 <div class="bg"></div>
 
 <div class="container">
+<a href="index.html">← Back</a>
 
-  <a class="back" href="index.html">← Back</a>
+<div class="card">
+<h1>Cakewalk</h1>
+<div class="tag">Tier: 1 (Tutorial)</div>
 
-  <div class="card">
+<p>Very light challenge. Movement is simple and forgiving.</p>
 
-    <h1>Cakewalk</h1>
-    <div class="sub">Almost no resistance</div>
-
-    <div class="tag">Tier: Beginner</div>
-
-    <div class="section">
-      Very light challenge. Movement is straightforward and forgiving, requiring minimal precision or effort.
-    </div>
-
-    <div class="section">
-      <b>Stages:</b>
-      <ul>
-        <li>Parkour 2</li>
-      </ul>
-    </div>
-
-  </div>
+<ul><li>Parkour 2</li></ul>
+</div>
 </div>
 
 </body>
