@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Overpass', sans-serif;
+  color: white;
+  overflow: hidden;
+  background: #0f0f14;
+}
+
+/* 🧩 Simple background (structured + rhythmic) */
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(180,255,100,0.08) 0px,
+      rgba(180,255,100,0.08) 2px,
+      transparent 2px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(200,255,120,0.06) 0px,
+      rgba(200,255,120,0.06) 2px,
+      transparent 2px,
+      transparent 40px
+    ),
+    radial-gradient(circle at 50% 50%, rgba(180,255,100,0.15), transparent 60%);
+  animation: gridShift 6s linear infinite;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+@keyframes gridShift {
+  0%   { transform: translate(0px, 0px); }
+  100% { transform: translate(-40px, -40px); }
+}
+
+/* layout */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 30px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.back:hover {
+  color: white;
+  transform: translateX(-4px);
+}
+
+/* card */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+}
+
+h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: 1px;
+}
+
+.sub {
+  margin-top: 8px;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+/* tag */
+.tag {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(180,255,100,0.2);
+  border: 1px solid rgba(180,255,100,0.4);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* sections */
+.section {
+  margin-top: 25px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+ul {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+  <a class="back" href="index.html">← Back</a>
+
+  <div class="card">
+
+    <h1>Simple</h1>
+    <div class="sub">Clear patterns begin to form</div>
+
+    <div class="tag">Tier: Beginner</div>
+
+    <div class="section">
+      Introduces consistent structure. Movements follow predictable patterns, requiring slight awareness and control.
+    </div>
+
+    <div class="section">
+      <b>Stages:</b>
+      <ul>
+        <li>Parkour 3</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
