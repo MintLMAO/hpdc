@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Terrifying</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:black;
+  overflow:hidden;
+  cursor:none;
+}
+
+/* 🌑 darkness layer */
+.darkness {
+  position:fixed;
+  inset:0;
+  background:black;
+  pointer-events:none;
+  z-index:10;
+  mask-image: radial-gradient(circle 120px at 50% 50%, transparent 0%, black 100%);
+  transition: mask-position 0.05s;
+}
+
+/* subtle background horror texture */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, transparent 2px);
+  filter:blur(6px);
+  animation:flicker 0.15s infinite;
+  z-index:-1;
+}
+
+@keyframes flicker {
+  0%,100%{opacity:0.4}
+  50%{opacity:0.2}
+}
+
+/* 👁️ subtle breathing zoom */
+body {
+  animation:breath 4s infinite;
+}
+
+@keyframes breath {
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.01)}
+}
+
+/* 🩸 eerie text flicker */
+h1 {
+  animation:textFlicker 2s infinite;
+}
+
+@keyframes textFlicker {
+  0%,100%{opacity:1}
+  50%{opacity:0.3}
+  60%{opacity:1}
+  65%{opacity:0.2}
+  70%{opacity:1}
+}
+
+/* layout */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:60px 30px;
+}
+
+.card {
+  background:rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter:blur(4px);
+}
+
+a { color:rgba(255,255,255,0.6); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.1);
+  display:inline-block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="darkness" id="darkness"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1>Terrifying</h1>
+<div class="tag">Tier: 4 (Skyline)</div>
+
+<p>You are no longer in control. The environment feels alive.</p>
+
+<ul><li>Parkour 19</li></ul>
+
+</div>
+</div>
+
+<script>
+const darkness = document.getElementById("darkness");
+
+document.addEventListener("mousemove", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  darkness.style.maskImage =
+    `radial-gradient(circle 120px at ${x}px ${y}px, transparent 0%, black 100%)`;
+});
+</script>
+
+</body>
+</html>

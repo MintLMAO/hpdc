@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Absurd</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:black;
+  overflow:hidden;
+}
+
+/* 🌀 chaotic layered background */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    conic-gradient(from 0deg, red, blue, green, purple, red),
+    repeating-linear-gradient(90deg, white 0px, transparent 2px);
+  mix-blend-mode:screen;
+  animation:
+    spin 6s infinite linear,
+    skew 0.6s infinite alternate;
+  filter: blur(12px);
+  z-index:-3;
+}
+
+@keyframes spin {
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+
+@keyframes skew {
+  0%{transform:skewX(0deg)}
+  100%{transform:skewX(20deg)}
+}
+
+/* 🧠 text distortion */
+.glitch {
+  position:relative;
+  animation:warp 0.2s infinite;
+}
+
+@keyframes warp {
+  0%{transform:scale(1,1)}
+  25%{transform:scale(1.2,0.8)}
+  50%{transform:scale(0.8,1.3)}
+  75%{transform:rotate(5deg)}
+}
+
+/* 🤯 random floating duplicates */
+.ghost {
+  position:absolute;
+  opacity:0.2;
+  pointer-events:none;
+  animation:drift 4s infinite linear;
+}
+
+@keyframes drift {
+  0%{transform:translate(0,0)}
+  100%{transform:translate(200px,-200px)}
+}
+
+/* layout breaking slightly */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:60px 30px;
+  transform: rotate(0.5deg);
+}
+
+.card {
+  background:rgba(255,255,255,0.05);
+  border-radius:18px;
+  padding:30px;
+  backdrop-filter: blur(10px);
+  transform: skewX(2deg);
+}
+
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.2);
+  display:inline-block;
+}
+
+/* 🌈 hue chaos */
+body {
+  animation:hue 5s infinite linear;
+}
+
+@keyframes hue {
+  0%{filter:hue-rotate(0deg)}
+  100%{filter:hue-rotate(360deg)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1 class="glitch">Absurd</h1>
+<div class="tag">Tier: 4 (Skyline)</div>
+
+<p>Logic collapses. Patterns no longer behave consistently.</p>
+
+<ul><li>Parkour 18</li></ul>
+
+</div>
+</div>
+
+<!-- floating nonsense duplicates -->
+<div class="ghost" style="top:20%; left:10%">Absurd</div>
+<div class="ghost" style="top:60%; left:70%">Absurd</div>
+<div class="ghost" style="top:40%; left:50%">Absurd</div>
+
+</body>
+</html>
