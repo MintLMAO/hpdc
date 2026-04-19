@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Medium</title>
+<title>Difficult</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -14,22 +15,26 @@ body {
   overflow:hidden;
 }
 
+/* slight instability introduced */
 .bg {
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle, rgba(255,180,80,0.25), transparent 60%);
-  animation:pulse 1.6s infinite;
-  filter:blur(18px);
+    radial-gradient(circle, rgba(255,80,40,0.3), transparent 60%);
+  filter:blur(16px);
+  animation:jitter 0.25s infinite;
   z-index:-1;
 }
 
-@keyframes pulse {
-  0%,100% { transform:scale(1) }
-  50% { transform:scale(1.2) }
+@keyframes jitter {
+  0% { transform:translate(0,0) }
+  25% { transform:translate(3px,-2px) }
+  50% { transform:translate(-3px,2px) }
+  75% { transform:translate(2px,1px) }
 }
 
 .container { max-width:700px; margin:auto; padding:60px 30px; }
+
 .card {
   background:rgba(255,255,255,0.04);
   border-radius:18px;
@@ -45,7 +50,7 @@ a:hover { color:white }
   display:inline-block;
   padding:6px 12px;
   border-radius:999px;
-  background:rgba(255,180,80,0.25);
+  background:rgba(255,80,40,0.35);
 }
 </style>
 </head>
@@ -57,12 +62,12 @@ a:hover { color:white }
 <a href="index.html">← Back</a>
 
 <div class="card">
-<h1>Medium</h1>
+<h1>Difficult</h1>
 <div class="tag">Tier: 2 (Baseline)</div>
 
-<p>Requires control and precision. Mistakes become more punishing.</p>
+<p>Execution must be consistent. Errors are punishing and frequent.</p>
 
-<ul><li>Parkour 6</li></ul>
+<ul><li>Parkour 9</li></ul>
 </div>
 </div>
 

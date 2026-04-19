@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Medium</title>
+<title>Advanced</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -14,22 +15,25 @@ body {
   overflow:hidden;
 }
 
+/* sharper directional flow */
 .bg {
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle, rgba(255,180,80,0.25), transparent 60%);
-  animation:pulse 1.6s infinite;
-  filter:blur(18px);
+    linear-gradient(120deg, rgba(255,150,60,0.15), transparent 60%),
+    radial-gradient(circle at 70% 30%, rgba(255,180,100,0.25), transparent 50%);
+  filter:blur(16px);
+  animation:slide 3.5s linear infinite;
   z-index:-1;
 }
 
-@keyframes pulse {
-  0%,100% { transform:scale(1) }
-  50% { transform:scale(1.2) }
+@keyframes slide {
+  0% { transform:translate(0,0) }
+  100% { transform:translate(-30px,-20px) }
 }
 
 .container { max-width:700px; margin:auto; padding:60px 30px; }
+
 .card {
   background:rgba(255,255,255,0.04);
   border-radius:18px;
@@ -45,7 +49,7 @@ a:hover { color:white }
   display:inline-block;
   padding:6px 12px;
   border-radius:999px;
-  background:rgba(255,180,80,0.25);
+  background:rgba(255,150,60,0.25);
 }
 </style>
 </head>
@@ -57,12 +61,12 @@ a:hover { color:white }
 <a href="index.html">← Back</a>
 
 <div class="card">
-<h1>Medium</h1>
+<h1>Advanced</h1>
 <div class="tag">Tier: 2 (Baseline)</div>
 
-<p>Requires control and precision. Mistakes become more punishing.</p>
+<p>Requires consistent control and precision. Movement must be deliberate.</p>
 
-<ul><li>Parkour 6</li></ul>
+<ul><li>Parkour 7</li></ul>
 </div>
 </div>
 
