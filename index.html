@@ -35,7 +35,7 @@ body {
   z-index: 5;
 }
 
-/* TOOLTIP (clean, no box) */
+
 .tooltip {
   position: absolute;
   right: 100%;
@@ -57,9 +57,7 @@ body {
   transform: translate(-120%, -50%);
 }
 
-/* =========================
-   ESCALATION SYSTEM
-========================= */
+
 
 .intense {
   animation: microShake 0.22s infinite;
@@ -93,7 +91,7 @@ body {
   animation: dimensionalStretch 0.35s infinite, warp 0.4s infinite, glitchBurst 0.08s infinite;
 }
 
-/* 🔥 FIXED TERRIFYING (now actually unsettling) */
+
 .terrifying {
   animation:
     terrorStutter 0.9s infinite steps(1),
@@ -103,20 +101,20 @@ body {
   letter-spacing: 1px;
 }
 
-/* CATACLYSMIC = structural breakdown */
+
 .cataclysmic {
   animation: structuralCollapse 0.4s infinite, microShake 0.08s infinite;
   font-weight: 800;
 }
 
-/* CATASTROPHIC (your original chaotic core restored) */
+
 .catastrophic {
   font-weight: 900;
   animation: realityBreak 0.18s infinite;
   text-shadow: 0 0 10px rgba(255,255,255,0.85);
 }
 
-/* ETERNAL = cosmic field */
+
 .eternal {
   animation:
     cosmicDrift 8s infinite linear,
@@ -133,9 +131,7 @@ body {
   z-index: -1;
 }
 
-/* =========================
-   KEYFRAMES
-========================= */
+
 
 @keyframes microShake {
   0% { transform: translate(0,0); }
@@ -189,7 +185,7 @@ body {
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* 🧠 NEW: terrifying instability (key improvement) */
+
 @keyframes terrorStutter {
   0%   { transform: translate(0,0) scale(1); }
   10%  { transform: translate(1px,-1px) scale(1.02); }
@@ -201,7 +197,7 @@ body {
   100% { transform: translate(0,0) scale(1); }
 }
 
-/* STRUCTURAL BREAK */
+
 @keyframes structuralCollapse {
   0% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
   25% { transform: translate(2px,-1px) scale(1.02); letter-spacing: 1px; }
@@ -210,7 +206,6 @@ body {
   100% { transform: translate(0,0) scale(1); letter-spacing: 0px; }
 }
 
-/* CATASTROPHIC CORE */
 @keyframes realityBreak {
   0% { transform: translate(0,0) scale(1); }
   20% { transform: translate(2px,-1px) scale(1.02); }
@@ -219,7 +214,7 @@ body {
   100% { transform: translate(0,0) scale(1); }
 }
 
-/* COSMIC */
+
 @keyframes cosmicDrift {
   0% { transform: translate(0,0) scale(1); }
   50% { transform: translate(3px,-3px) scale(1.05); }
@@ -236,7 +231,7 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
-/* TRAIL */
+
 .trail {
   position: fixed;
   pointer-events: none;
@@ -250,7 +245,7 @@ body {
 
 <div class="chart">
 
-<!-- NORMAL -->
+
 <div class="tier" style="background:#208217;" onclick="location.href='effortless.html'">
   <div class="tooltip">Effortless</div>
 </div>
@@ -282,7 +277,7 @@ body {
   <div class="tooltip">Hard</div>
 </div>
 
-<!-- ESCALATION -->
+
 <div class="tier" style="background:#a30800;" onclick="location.href='intense.html'">
   <div class="tooltip"><span class="intense">Intense</span></div>
 </div>
@@ -311,7 +306,7 @@ body {
   <div class="tooltip"><span class="terrifying">Terrifying</span></div>
 </div>
 
-<!-- CATASTROPHIC -->
+
 <div class="tier" style="background:#ffffff;" onclick="location.href='catastrophic.html'" id="catTier">
   <div class="tooltip"><span class="catastrophic" id="catLabel">Catastrophic</span></div>
 </div>

@@ -15,7 +15,6 @@ body {
   overflow:hidden;
 }
 
-/* 🌌 MAIN GLITCH BACKGROUND */
 .bg {
   position:fixed;
   inset:0;
@@ -43,7 +42,6 @@ body {
   100% { filter:hue-rotate(360deg) blur(14px); }
 }
 
-/* ⚡ GLITCH OVERLAY */
 .glitch::before,
 .glitch::after {
   content: attr(data-text);
@@ -76,7 +74,6 @@ body {
   100% { transform: translate(3px,-1px); }
 }
 
-/* 📺 scanlines */
 .scanlines {
   position:fixed;
   inset:0;
@@ -96,7 +93,6 @@ body {
   50% { opacity:0.2 }
 }
 
-/* layout */
 .container {
   max-width:700px;
   margin:auto;
