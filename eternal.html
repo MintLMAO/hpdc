@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eternal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Overpass',sans-serif;
+  color:white;
+  background:#000;
+  overflow:hidden;
+}
+
+/* 🌌 COSMIC FIELD (no chaos, only scale) */
+.bg {
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(120,200,255,0.15), transparent 40%),
+    radial-gradient(circle at 20% 30%, rgba(180,120,255,0.12), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(100,255,220,0.10), transparent 55%);
+  animation:
+    drift 12s infinite linear,
+    pulse 6s infinite ease-in-out;
+  filter:blur(10px) saturate(140%);
+  z-index:-3;
+}
+
+@keyframes drift {
+  0% { transform:translate(0,0) scale(1); }
+  50% { transform:translate(20px,-10px) scale(1.05); }
+  100% { transform:translate(0,0) scale(1); }
+}
+
+@keyframes pulse {
+  0%,100% { opacity:0.8; }
+  50% { opacity:1; }
+}
+
+/* ✨ calm cosmic text */
+h1 {
+  font-weight:800;
+  letter-spacing:2px;
+  text-shadow:
+    0 0 10px rgba(180,220,255,0.6),
+    0 0 30px rgba(120,180,255,0.4);
+}
+
+/* 🌠 soft float */
+.container {
+  max-width:700px;
+  margin:auto;
+  padding:80px 30px;
+  text-align:center;
+  animation:float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-10px); }
+}
+
+.card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:22px;
+  padding:40px;
+  backdrop-filter:blur(12px);
+}
+
+/* 🌙 subtle stars */
+.stars::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(white 1px, transparent 1px);
+  background-size:3px 3px;
+  opacity:0.08;
+  pointer-events:none;
+}
+
+a { color:rgba(255,255,255,0.7); text-decoration:none }
+a:hover { color:white }
+
+.tag {
+  margin-top:15px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(120,200,255,0.15);
+  display:inline-block;
+}
+</style>
+</head>
+
+<body class="stars">
+
+<div class="bg"></div>
+
+<div class="container">
+<a href="index.html">← Back</a>
+
+<div class="card">
+
+<h1>Eternal</h1>
+<div class="tag">Tier: 6 (Fabled)</div>
+
+<p>Beyond difficulty. Beyond structure. A state of infinite continuity.</p>
+
+<ul>
+<li>Parkour ∞</li>
+</ul>
+
+</div>
+</div>
+
+</body>
+</html>

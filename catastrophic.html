@@ -15,64 +15,74 @@ body {
   overflow:hidden;
 }
 
-/* 🌈 controlled chaos (NOT illegible) */
+/* 🧩 REALITY FRACTURE FIELD (new identity) */
 .bg {
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 30% 40%, rgba(255,0,80,0.45), transparent 55%),
-    radial-gradient(circle at 70% 60%, rgba(0,200,255,0.35), transparent 60%),
-    radial-gradient(circle at 50% 50%, rgba(255,255,0,0.2), transparent 70%);
-  filter:blur(18px) contrast(160%) saturate(200%);
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,0.05) 0px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(0deg,
+      rgba(255,0,100,0.06) 0px,
+      transparent 2px,
+      transparent 8px
+    ),
+    radial-gradient(circle at 50% 50%, rgba(0,255,255,0.08), transparent 60%);
+  filter:contrast(220%) brightness(0.7);
   animation:
-    drift 1.2s infinite alternate,
-    hue 3s infinite linear;
+    fractureMove 0.35s infinite steps(2),
+    shear 1.2s infinite alternate;
   z-index:-3;
 }
 
-@keyframes drift {
-  0% { transform:translate(0,0) scale(1); }
-  50% { transform:translate(-10px,5px) scale(1.03); }
-  100% { transform:translate(10px,-5px) scale(0.98); }
-}
-
-@keyframes hue {
-  0% { filter:blur(18px) hue-rotate(0deg) contrast(160%) saturate(200%); }
-  100% { filter:blur(18px) hue-rotate(360deg) contrast(160%) saturate(200%); }
-}
-
-/* ⚡ readable glitch */
-.glitch {
-  position:relative;
-  animation:shake 0.12s infinite;
-}
-
-@keyframes shake {
+@keyframes fractureMove {
   0% { transform:translate(0,0); }
-  50% { transform:translate(2px,-2px); }
+  25% { transform:translate(6px,-4px); }
+  50% { transform:translate(-5px,3px); }
+  75% { transform:translate(3px,5px); }
   100% { transform:translate(0,0); }
 }
 
-.glitch::before,
-.glitch::after {
-  content:attr(data-text);
-  position:absolute;
-  left:0;
-  top:0;
-  opacity:0.8;
+@keyframes shear {
+  0% { filter:contrast(220%) brightness(0.7); }
+  50% { filter:contrast(300%) brightness(0.5); }
+  100% { filter:contrast(220%) brightness(0.7); }
+}
+
+/* ⚡ layered glitch (not RGB spam anymore) */
+.glitch {
+  position:relative;
+  animation:microBreak 0.18s infinite;
+}
+
+@keyframes microBreak {
+  0% { transform:translate(0,0); }
+  50% { transform:translate(2px,-1px); }
+  100% { transform:translate(0,0); }
 }
 
 .glitch::before {
-  color:#ff2e88;
-  transform:translate(2px,-1px);
+  content:attr(data-text);
+  position:absolute;
+  left:2px;
+  top:0;
+  color:rgba(255,0,120,0.7);
+  clip-path: inset(0 0 50% 0);
 }
 
 .glitch::after {
-  color:#00d4ff;
-  transform:translate(-2px,1px);
+  content:attr(data-text);
+  position:absolute;
+  left:-2px;
+  top:0;
+  color:rgba(0,255,255,0.6);
+  clip-path: inset(50% 0 0 0);
 }
 
-/* 🧨 unstable but readable UI */
+/* 🧱 unstable structure */
 .container {
   max-width:700px;
   margin:auto;
@@ -80,19 +90,19 @@ body {
 }
 
 .card {
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.12);
   border-radius:18px;
   padding:30px;
-  backdrop-filter:blur(10px);
-  animation:cardShake 0.15s infinite;
+  backdrop-filter:blur(8px);
+  animation:structureFail 0.14s infinite;
 }
 
-@keyframes cardShake {
-  0%{transform:translate(0,0)}
-  25%{transform:translate(2px,-1px)}
-  50%{transform:translate(-2px,2px)}
-  75%{transform:translate(1px,1px)}
+@keyframes structureFail {
+  0% { transform:translate(0,0); }
+  25% { transform:translate(3px,-2px) skewX(1deg); }
+  50% { transform:translate(-3px,2px) skewX(-1deg); }
+  75% { transform:translate(2px,3px); }
 }
 
 a { color:rgba(255,255,255,0.7); text-decoration:none }
@@ -102,7 +112,7 @@ a:hover { color:white }
   margin-top:10px;
   padding:6px 12px;
   border-radius:999px;
-  background:rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.18);
   display:inline-block;
 }
 </style>
@@ -120,7 +130,7 @@ a:hover { color:white }
 <h1 class="glitch" data-text="Catastrophic">Catastrophic</h1>
 <div class="tag">Tier: 5 (Borderline)</div>
 
-<p>Critical overload. Reality is unstable but still partially coherent.</p>
+<p>Reality fractures into layered instability. Structure no longer aligns consistently.</p>
 
 <ul><li>Parkour 22</li></ul>
 
